@@ -1,3 +1,7 @@
+**The website for the UCSB 2016 workshop can be found [here](http://mqwilber.github.io/2016-04-14-ucsb/)**
+
+---
+
 # workshop-template
 
 This repository is [Software Carpentry](http://software-carpentry.org)'s
