@@ -1,6 +1,6 @@
 ---
-layout: lesson
-root: ../..
+layout: page
+root: .
 title: Introducing the Shell
 ---
 
