@@ -1,0 +1,23 @@
+# Answers to 'Creating Things' Exercises
+
+Exercise 1: Renaming files
+---
+Answer: 2
+
+Exercise 2: Moving and Copying
+---
+Answer: 2
+
+Exercise 3: Organizing Directories and Files
+---
+To get the necessary output she could run `mv *.dat analyzed`
+
+Exercise 4: Copy with Multiple Filenames
+---
+In the first box, `cp` will copy both files in `thesis` to `backup`
+
+In the second box `cp` throws an error because it doesn't know where to put the `*.txt` files
+
+Exercise 5: Listing Recursively and By Time
+---
+`ls -R -t` will list directories by time and recursively

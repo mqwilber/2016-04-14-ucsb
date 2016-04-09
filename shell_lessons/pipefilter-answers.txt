@@ -1,0 +1,59 @@
+# Answers to 'Pipes and Filters' Exercises
+
+Exercise 1: Using wildcards
+---
+Answer: 3
+
+Exercise 2: What does `sort -n` do?
+---
+
+`sort` with out `-n` will assume that what you are sorting are characters. 
+When sorting characters, "10" comes before "2" because "1" come before "2". In
+other words, you can think of sort as sorting on the first character and then
+on the second character, etc. So "300000" would come before "8" because "3"
+comes before "8".  With the `-n` flag, sort considers 10 a number rather than
+a character string and sorts the numbers as you'd expect.
+
+
+Exercise 3: What does `<` mean?
+---
+They both take in `mydata.dat` as input, but one command take it as an argument and the other takes it as standard input.
+
+Exercise 4: What does >> mean?
+---
+`echo hello > testfile01.txt` will always overwrite `testfile01.txt` while 
+`echo hello >> testfile02.txt` will create the file if it doesn't exist and
+append to the file otherwise.
+
+Exercise 5: Piping commands together
+---
+`wc -l * | sort -n | head -n 3`, this is option 4
+
+Exercise 5: Why does `uniq` only remove adjacent duplicates?
+---
+Removing adjacent duplicates is completely in-line with the Unix philosophy:
+build small programs that do things really well and combine them to do bigger
+things. Combining `uniq` and `sort` will return only the unique fish in the
+list.
+
+Exercise 6: Pipe reading comprehension
+---
+Copy and paste the `animals.txt` data into `nano` and save it as `animals.txt` so you can try it out yourself. 
+
+1. `cat animals.txt`: Prints the `animals.txt` contents to `heads` std in
+2. `head -n 5`: Gets the first 5 animals
+3. `tail -n 3`: Gets the last 3 animals of the first 5
+4. `sort -r`: Reverse sorts the last 3 animals of the first 5
+5. `> final.txt`: Outputs the results to the file `final.txt`
+
+It should contain
+
+```
+2012-11-06,rabbit
+2012-11-06,deer
+2012-11-05,raccoon
+```
+
+Exercise 7: Pipe construction
+---
+`cut -d , -f 2 animals.txt | sort  | uniq`
