@@ -1,0 +1,68 @@
+# Answers to 'Loops' Exercises
+
+Exercise 1: Variables in Loops
+---
+You can try this out using the following commands
+
+```
+touch fructose.dat glucose.dat sucrose.dat
+for datafile in *.dat; do ls *.dat; done
+```
+
+it prints
+
+```
+fructose.dat    glucose.dat sucrose.dat
+fructose.dat    glucose.dat sucrose.dat
+fructose.dat    glucose.dat sucrose.dat
+```
+
+because each time `ls *.dat* displays all the files with a `.dat` extension.
+
+```
+for datafile in *.dat; do ls $datafile; done
+```
+
+prints
+
+```
+fructose.dat
+glucose.dat
+sucrose.dat
+```
+
+because each iteration of the loop prints one item in `*.dat` which expands to the three `.dat` files.
+
+Exercise 2: Saving a file in a loop - Part One
+---
+
+Answer: 1. (Try it out to confirm) 
+
+
+Exercise 3: Saving a file in a loop - Part Two
+---
+Answer: 1. (Try it out to confirm)
+
+
+Exercise 4: Doing a dry run
+---
+Version 1 would echo analyze $file and save the result to the file analyzed-$file.  We would not see anything on the screen
+
+Version 2 is the one we want and it would print the expanded string "analyze $file > analyzed-$file" to the console for each iteration of the for loop.
+
+
+Exercise 5: Nested loops
+---
+Let's try it out and see
+
+```
+for sugar in fructose glucose sucrose
+do
+    for temperature in 25 30 37 40
+    do
+        mkdir $sugar-$temperature
+    done
+done
+```
+
+First, a sugar is extracts from [fructose, glucose, sugar]. For this sugar four directories are made that have the pattern $sugar-$temperature where $temperature is on of the 4 temps given.  This is repeated for each sugar so that 12 new directories are made.
