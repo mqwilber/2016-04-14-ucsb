@@ -55,14 +55,12 @@ View the data frame:
   
 1. 
 2. 
-	head(AWM)
-	tail(AWM)
-	ncol(AWM)
-	View(AWM)
+	head(AWM),tail(AWM),ncol(AWM),View(AWM)
 
 ***
 
-
+sql <- paste("select naOUTPlant.species,naOUTPlant.`",x,"`as cover from naOUTPlant where naOUTPlant.`",x,"` is not NULL", sep = "")
+transPlantPairs <- sqldf(sql)
 ***
 
 ***
