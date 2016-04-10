@@ -105,8 +105,8 @@
 asterisk &lt;-<span class="st"> &quot;***&quot;</span>  <span class="co"># R interprets a variable with a single value as a vector</span>
                    <span class="co"># with one element.</span>
 <span class="kw">fence</span>(best_practice, asterisk)</code></pre>
-<pre class="output"><code>[1] &quot;***&quot;       &quot;Write&quot;     &quot;programs&quot;  &quot;for&quot;       &quot;people&quot;    &quot;not&quot;      
-[7] &quot;computers&quot; &quot;***&quot;      
+<pre class="output"><code>[1] &quot;***&quot;       &quot;Write&quot;     &quot;programs&quot;  &quot;for&quot;       &quot;people&quot;    &quot;not&quot;
+[7] &quot;computers&quot; &quot;***&quot;
 </code></pre>
 <ul>
 <li>If the variable <code>v</code> refers to a vector, then <code>v[1]</code> is the vector’s first element and <code>v[length(v)]</code> is its last (the function <code>length</code> returns the number of elements in a vector). Write a function called <code>outside</code> that returns a vector made up of just the first and last elements of its input:</li>
@@ -311,29 +311,29 @@ more_data</code></pre>
 
 <span class="co"># no arguments</span>
 <span class="kw">display</span>()</code></pre>
-<pre class="output"><code>a b c 
-1 2 3 
+<pre class="output"><code>a b c
+1 2 3
 </code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># one argument</span>
 <span class="kw">display</span>(<span class="dv">55</span>)</code></pre>
-<pre class="output"><code> a  b  c 
-55  2  3 
+<pre class="output"><code> a  b  c
+55  2  3
 </code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># two arguments</span>
 <span class="kw">display</span>(<span class="dv">55</span>, <span class="dv">66</span>)</code></pre>
-<pre class="output"><code> a  b  c 
-55 66  3 
+<pre class="output"><code> a  b  c
+55 66  3
 </code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># three arguments</span>
 <span class="kw">display</span> (<span class="dv">55</span>, <span class="dv">66</span>, <span class="dv">77</span>)</code></pre>
-<pre class="output"><code> a  b  c 
-55 66 77 
+<pre class="output"><code> a  b  c
+55 66 77
 </code></pre>
 <p>As this example shows, arguments are matched from left to right, and any that haven’t been given a value explicitly get their default value. We can override this behavior by naming the value as we pass it in:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># only setting the value of c</span>
 <span class="kw">display</span>(<span class="dt">c =</span> <span class="dv">77</span>)</code></pre>
-<pre class="output"><code> a  b  c 
- 1  2 77 
+<pre class="output"><code> a  b  c
+ 1  2 77
 </code></pre>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
@@ -401,6 +401,7 @@ more_data</code></pre>
 <p>but the chances of us typing all 12 filenames correctly aren’t great, and we’ll be even worse off if we get another hundred files. What we need is a way to tell R to do something once for each file, and that will be the subject of the next lesson.</p>
 </div>
 </aside>
+<p><strong>Answers to challenge exercises:</strong><a href="./func-answers.R"> func-answers.R</a></p>
         </div>
       </div>
       </article>
