@@ -54,17 +54,33 @@ Here's how to install sqldf:
 # Reading and looking at your data frame using SQL.
 
 First, read in the data frame as we did before.
-mammals <- read.csv("mammal_stats.csv", header=TRUE, stringsAsFactors=FALSE,check.names=FALSE)
 
-> **Tip**: R gives you lots of ways to look at your dataframe.
-
-    head(AWM) tail(AWM) ncol(AWM) View(AWM)
+    mammals <- read.csv("mammal_stats.csv", header=TRUE, stringsAsFactors=FALSE)
+    
+- stringsAsFactors: logical: should character vectors be converted to factors?
+- header: logical: should the data frame use the first row as headers?
 
 ***
+R gives you lots of ways to look at your dataframe.
 
-sql <- paste("select naOUTPlant.species,naOUTPlant.`",x,"`as cover from naOUTPlant where naOUTPlant.`",x,"` is not NULL", sep = "")
-transPlantPairs <- sqldf(sql)
+    head(mammals) tail(mammals) ncol(mammals) View(mammals)
+    
+SQL gives you more ways..
+
+    sqldf("select distinct species from mammals")
+    sqldf("select distinct `order`,species from mammals")
+
+> **TIP**: The word ***order*** is a column name, but it is also a command reserved in SQL. Put column names in `` to avoid confusion.
+
 ***
+Select statements using SQL. * indicates selecting all.
+
+    sqldf("select * from mammals")
+
+Select using filters
+
+    sqldf("select * from mammals where `order`='Carnivora'")
+    sqldf("select * from mammals where `order`='Carnivora' limit 10")
 
 ***
 
