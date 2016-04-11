@@ -101,6 +101,7 @@ Select, change and create new data frames
 
 ***
 Concatination
+
     sqldf("select TOrder || '-' || species as name from mammalsEdited limit 10")
 
 ***
