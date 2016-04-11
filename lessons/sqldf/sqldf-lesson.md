@@ -21,8 +21,9 @@ When we are using a spreadsheet, we put formulas into cells to calculate new val
 
 It is a database manager. Every database manager — Oracle, IBM DB2, PostgreSQL, MySQL, Microsoft Access, and SQLite — stores data in a different way, so a database created with one cannot be used directly by another. However, every database manager can import and export data in a variety of formats, like .csv, so it is possible to move information from one to another.
 
+***
 
-# Why do we need SQL?
+# Benefits of relational databases
 
 Both SQL and spreadsheets are used to store and manipulate data.
 
@@ -37,7 +38,11 @@ easy to backup | easy to loose data|
 
 # Getting Started:
 
-We are going to learn the basics of SQL using dataframes as if they were tables in a relational database. We can do this with sqldf package.
+We are going to learn the basics of SQLite using data frames. You can think of a data frame as if they were tables in a relational database. We can do this with sqldf package.
+
+[Image of DB here]
+
+***
 
 Here's how to install sqldf:
 

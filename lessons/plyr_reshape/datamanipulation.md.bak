@@ -17,7 +17,7 @@ As scientists, we format datasheets to make our data entry intuitive. However, d
 
 For our example, we will look at our dataset `iris`, which is a [famous statistics dataset](http://rcs.chemometrics.ru/Tutorials/classification/Fisher.pdf)  that measures the length and width of both sepals and petals on three species of irises (50 individuals each, 150 flowers total). You used `iris` for your previous ggplot lesson. 
 
-<img src="http://upload.wikimedia.org/wikipedia/commons/5/56/Kosaciec_szczecinkowaty_Iris_setosa.jpg" height="400px" align="middle"  />
+<img src="http://thecodebug.com/wp-content/uploads/2015/01/linq4.gif" height="400px" align="middle"  />
 
 > *Iris setosa*, one of the species you will be looking at. *Wikipedia Commmons*
 
