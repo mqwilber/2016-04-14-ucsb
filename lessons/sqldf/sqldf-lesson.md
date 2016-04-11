@@ -77,15 +77,20 @@ Select statements using SQL. * indicates selecting all.
 
     sqldf("select * from mammals")
 
-Select using filters
+Select distinct values
+
+    sqldf("select distinct `order` from mammals")
+
+Select using filters and ordering
 
     sqldf("select * from mammals where `order`='Carnivora'")
     sqldf("select * from mammals where `order`='Carnivora' limit 10")
+    sqldf("select * from mammals where `order`='Carnivora' order by `adult_body_mass_g` desc limit 10")
 
 ***
 
 > **Exercise 1**:
-> 
+> Select unique species with litter_size greater than 1
   
 > Save your new dataframe as a different file.
 
