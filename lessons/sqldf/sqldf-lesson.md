@@ -115,6 +115,7 @@ Counting using SQL by Groups
 ***
 
 Finding maximum and minimum
+
     sqldf("select max(adult_body_mass_g) from mammals")
     sqldf("select min(adult_body_mass_g) from mammals")
     sqldf("select * from mammals where adult_body_mass_g = (select min(adult_body_mass_g) from mammals)")
