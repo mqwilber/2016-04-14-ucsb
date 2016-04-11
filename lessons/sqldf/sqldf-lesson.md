@@ -37,13 +37,12 @@ easy to backup | easy to loose data|
 
 # Getting Started:
 
-We are going to learn the basics of SQL using dataframes as if they were tables in a relational database. We can do this with sqldf.
+We are going to learn the basics of SQL using dataframes as if they were tables in a relational database. We can do this with sqldf package.
 
 Here's how to install sqldf:
 
     install.packages("sqldf", dependencies = TRUE)  
     library("sqldf")
-
 
 ##`data`
 - The link to the mammal dataset again, or find the one you used during the last lesson
@@ -80,6 +79,7 @@ Select statements using SQL. * indicates selecting all.
 Select distinct values
 
     sqldf("select distinct `order` from mammals")
+    
 
 Select using filters and ordering
 
@@ -91,17 +91,51 @@ Select using filters and ordering
 
 > **Exercise 1**:
 > Select unique species with litter_size greater than 1
-  
-> Save your new dataframe as a different file.
 
 ***
-#### Compare to "base" graphics:
 
-- `plot(BloodPressure~Age, data=dat)`
+Select, change and create new data frames
 
-vs.
+    sqldf("select distinct `order` as TOrder from mammals")
+    mammalsEdited <-  sqldf("select `order` as TOrder, species, adult_body_mass_g as mass from mammals")
 
-- `ggplot2(data=dat, aes(x=Age, y=BloodPressure)) + geom_point()`
+***
+Concatination
+    sqldf("select TOrder || '-' || species as name from mammalsEdited limit 10")
+
+***
+Remove white space
+
+    sqldf("select TOrder || '-' || replace(species,' ','-') as name from mammalsEdited limit 10")
+
+***
+
+Counting using SQL by Groups
+
+***
+
+Finding maximum and minimum
+    sqldf("select max(adult_body_mass_g) from mammals")
+    sqldf("select min(adult_body_mass_g) from mammals")
+    sqldf("select * from mammals where adult_body_mass_g = (select min(adult_body_mass_g) from mammals)")
+ 
+*** 
+
+> **Exercise 2**:
+>  
+
+*** 
+
+Save your new dataframe as a different file.
+
+***
+
+Joining multiple tables (or data frames)
+
+    mammalsJoined <- sqldf("select ")
+    mammalsEdited <-  sqldf("select `order` as TOrder, species, adult_body_mass_g as mass from mammals")
+***
+
 
 
 
