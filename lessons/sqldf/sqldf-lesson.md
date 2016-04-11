@@ -40,7 +40,7 @@ easy to backup | easy to loose data|
 
 We are going to learn the basics of SQLite using data frames. You can think of a data frame as if they were tables in a relational database. We can do this with sqldf package.
 
-<img src="http://thecodebug.com/wp-content/uploads/2015/01/linq4.gif" height="400px" align="middle"  />
+<img src="http://thecodebug.com/wp-content/uploads/2015/01/linq4.gif" height="300px" align="middle"  />
 
 ***
 
