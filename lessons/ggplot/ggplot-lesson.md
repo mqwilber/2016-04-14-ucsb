@@ -17,6 +17,51 @@ title: ggplot
 
 #### Compare to "base" graphics:
 
+Lets make a plot of some of the mammal data.
+
+First, load the packages we'll need.  We are going to build on our previous lesson, so we will load both `dPlyr` and our new package, `ggplot2`:
+
+    #loading packages: dplyr and ggplot2
+    library(dplyr)
+    library(ggplot2)
+    
+Second, reload the data if you need to:
+
+    #loading mammals dataset for ggplot exercise:
+    setwd("C:/Users/Thomas/Documents/2016-04-14-ucsb/data/")
+    mammals <- read.csv("mammal_stats.csv")
+    # OR:
+    mammals <- read.csv(file.choose())
+
+```{r}
+
+TailsnWhales<-filter(mammals, order == "Rodentia" | order == "Cetacea") #Any rodent or cetacean
+
+
+plot(litter_size~log10(adult_body_mass_g), data=TailsnWhales, 
+    main="Rodents and Cetaceans:\nLitter Size v. Body Size",
+    xlab="Body Mass (g)",
+    ylab="Litter Size")
+points(litter_size~log10(adult_body_mass_g), data=TailsnWhales[which(TailsnWhales$order=="Rodentia"),], pch=21, col="black", bg="light blue", cex=1.5)
+points(litter_size~log10(adult_body_mass_g), data=TailsnWhales[which(TailsnWhales$order=="Cetacea"),], pch=24, col="black", bg="light green", cex=1.5)
+
+
+ggplot(data=TailsnWhales, aes(x=log10(adult_body_mass_g), y=litter_size))+
+  geom_point(aes(fill=order, shape=order),color="black", size=5)+
+  scale_shape_manual(values=c(24, 21))+
+  scale_fill_manual(values=c("light green", "light blue"))+
+  ggtitle("Rodents and Cetaceans:\nLitter Size v. Body Size")+
+  xlab("Body Mass (g)")+
+  ylab("Litter Size")+
+  theme_bw()
+  
+```
+
+
+`<img src="http://mqwilber.github.io/2016-04-14-ucsb/lessons/ggplot/TalesnWhales_base.png" height="300px" align="left"> <img src "http://mqwilber.github.io/2016-04-14-ucsb/lessons/ggplot/TalesnWhales_ggplot.png" height="300px" align="right">`
+
+
+
 - `plot(BloodPressure~Age, data=dat)`
 
 vs.
