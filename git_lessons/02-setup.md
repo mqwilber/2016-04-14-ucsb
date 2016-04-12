@@ -59,7 +59,7 @@ $ git config --list
 You can change your configuration as many times as you want: just use the
 same commands to choose another editor or update your email address.
 
-<!-- ###Commented out Proxy server
+###Commented out Proxy server
 
 > ## Proxy {.callout}
 >
@@ -78,4 +78,3 @@ same commands to choose another editor or update your email address.
 > $ git config --global --unset http.proxy
 > $ git config --global --unset https.proxy
 > ~~~
--->
