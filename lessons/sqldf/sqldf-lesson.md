@@ -4,7 +4,7 @@ root: ../..
 title: SQL with dataframes
 ---
 
-*by Katja Seltmann*
+*by Katja Seltmann* with excerpts from Software Carpentry SQLite lesson.
 
 **Supplementary Material**: 
 
