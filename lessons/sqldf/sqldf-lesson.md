@@ -50,7 +50,7 @@ Here's how to install sqldf:
     library("sqldf")
 
 ##`data`
-For this section, let's load the file [mammal_stats.csv](./mammal_stats.csv) again (it might still be in your folder from the plyr lesson).
+For this section, let's load the file [mammal_stats.csv](http://mqwilber.github.io/2016-04-14-ucsb/lessons/plyr_reshape/mammal_stats.csv) again (it might still be in your folder from the plyr lesson).
 
 ***
 
@@ -58,7 +58,7 @@ For this section, let's load the file [mammal_stats.csv](./mammal_stats.csv) aga
 
 First, read in the data frame as we did before.
 
-    mammals <- read.csv("http://mqwilber.github.io/2016-04-14-ucsb/lessons/plyr_reshape/mammal_stats.csv", header=TRUE, stringsAsFactors=FALSE)
+    mammals <- read.csv("../plyr_reshape/mammal_stats.csv", header=TRUE, stringsAsFactors=FALSE)
     
 - stringsAsFactors: logical: should character vectors be converted to factors?
 - header: logical: should the data frame use the first row as headers?
@@ -68,7 +68,7 @@ R gives you lots of ways to look at your dataframe.
 
     head(mammals) tail(mammals) ncol(mammals) View(mammals)
     
-SQL gives you more ways to view..
+SQL gives you more ways..
 
     sqldf("select distinct species from mammals")
     sqldf("select distinct `order`,species from mammals")
