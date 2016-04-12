@@ -68,7 +68,7 @@ R gives you lots of ways to look at your dataframe.
 
     head(mammals) tail(mammals) ncol(mammals) View(mammals)
     
-SQL gives you more ways..
+SQL gives you more ways to view..
 
     sqldf("select distinct species from mammals")
     sqldf("select distinct `order`,species from mammals")
