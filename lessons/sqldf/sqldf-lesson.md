@@ -117,6 +117,8 @@ Remove white space
 
 Counting using SQL by Groups
 
+sqldf("select TOrder, count(species) group by TOrder")
+
 ***
 
 Finding maximum and minimum
