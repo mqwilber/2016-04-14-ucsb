@@ -59,8 +59,9 @@ ggplot(data=TailsnWhales, aes(x=log10(adult_body_mass_g), y=litter_size))+
 ```
 
 
-<img src="http://mqwilber.github.io/2016-04-14-ucsb/lessons/ggplot/TalesnWhales_base.png" height="300px" align="left"> <img src="http://mqwilber.github.io/2016-04-14-ucsb/lessons/ggplot/TalesnWhales_ggplot.png" height="300px" align="right">`
+<img src="http://mqwilber.github.io/2016-04-14-ucsb/lessons/ggplot/TalesnWhales_base.png" height="300px" align="left">
 
+<img src="http://mqwilber.github.io/2016-04-14-ucsb/lessons/ggplot/TalesnWhales_ggplot.png" height="300px" align="right">  
 
 
 - `plot(BloodPressure~Age, data=dat)`
