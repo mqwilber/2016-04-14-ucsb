@@ -58,7 +58,7 @@ For this section, let's load the file [mammal_stats.csv](http://mqwilber.github.
 
 First, read in the data frame as we did before.
 
-    mammals <- read.csv("../plyr_reshape/mammal_stats.csv", header=TRUE, stringsAsFactors=FALSE)
+    mammals <- read.csv("./data/mammal_stats.csv", header=TRUE, stringsAsFactors=FALSE)
     
 - stringsAsFactors: logical: should character vectors be converted to factors?
 - header: logical: should the data frame use the first row as headers?
@@ -117,7 +117,7 @@ Remove white space
 
 Counting using SQL by Groups
 
-sqldf("select TOrder, count(species) group by TOrder")
+    sqldf("select TOrder, count(species) from mammalsEdited group by TOrder")
 
 ***
 
