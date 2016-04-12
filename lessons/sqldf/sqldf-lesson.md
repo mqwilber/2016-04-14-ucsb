@@ -58,7 +58,7 @@ For this section, let's load the file [mammal_stats.csv](./mammal_stats.csv) aga
 
 First, read in the data frame as we did before.
 
-    mammals <- read.csv("../plyr_reshape/mammal_stats.csv", header=TRUE, stringsAsFactors=FALSE)
+    mammals <- read.csv("http://mqwilber.github.io/2016-04-14-ucsb/lessons/plyr_reshape/mammal_stats.csv", header=TRUE, stringsAsFactors=FALSE)
     
 - stringsAsFactors: logical: should character vectors be converted to factors?
 - header: logical: should the data frame use the first row as headers?
