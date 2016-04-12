@@ -13,11 +13,11 @@ we can start using it.
 Let's create a directory for our work and then move into that directory:
 
 ~~~ {.bash}
-$ mkdir planets
-$ cd planets
+$ mkdir SoftwareCarpentry2016
+$ cd SoftwareCarpentry2016
 ~~~
 
-Then we tell Git to make `planets` a [repository](reference.html#repository)&mdash;a place where
+Then we tell Git to make `SoftwareCarpentry2016` a [repository](reference.html#repository)&mdash;a place where
 Git can store versions of our files:
 
 ~~~ {.bash}
@@ -32,7 +32,7 @@ $ ls
 ~~~
 
 But if we add the `-a` flag to show everything,
-we can see that Git has created a hidden directory within `planets` called `.git`:
+we can see that Git has created a hidden directory within `SoftwareCarpentry2016` called `.git`:
 
 ~~~ {.bash}
 $ ls -a
@@ -59,6 +59,8 @@ $ git status
 nothing to commit (create/copy files and use "git add" to track)
 ~~~
 
+
+<!--
 > ## Places to Create Git Repositories {.challenge}
 >
 > Dracula starts a new project, `moons`, related to his `planets` project.
@@ -77,3 +79,4 @@ nothing to commit (create/copy files and use "git add" to track)
 > 
 > Why is it a bad idea to do this?
 > How can Dracula "undo" his last `git init`?
+-->
