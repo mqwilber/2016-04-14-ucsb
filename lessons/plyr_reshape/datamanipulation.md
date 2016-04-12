@@ -19,7 +19,7 @@ By the end of this lesson, you should be able to:
 Summarizing and Operating: the dPlyr world
 ---------------------------------
 
-For this section, let's load the file [mammal_stats.csv](./data/mammal_stats.csv). This is a subset of a *["species-level database of extant and recently extinct mammals](http://esapubs.org/archive/ecol/E090/184/)*. 
+For this section, let's load the file [mammal_stats.csv](./mammal_stats.csv). This is a subset of a *["species-level database of extant and recently extinct mammals](http://esapubs.org/archive/ecol/E090/184/)*. 
 
 So far we've successfully loaded data by navigating to the directory and typing the name into `read.csv()`. But what if we're writing the script for another computer, or for a collaborator that may have the data in a different location? We can instead have the script pop up a window to select their data from. 
 
@@ -129,7 +129,7 @@ This lets us see that many of the animals relatively large for their size are ro
 
 
 > ### EXERCISE 2 - Data exploration. Try to use pipes!
-> Which species of iris has the longest average sepals? Which species has the smallest variance of sepal length over all of its individuals measured?
+> Which order has the most genuses? Of those genuses, which has the most species? The largest species?
 > Which species of carnivore has the largest body length to body mass ratio? (Hint: that's `adult_head_body_len_mm / adult_body_mass_g')`
 > 
 
