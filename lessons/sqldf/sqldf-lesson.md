@@ -50,8 +50,7 @@ Here's how to install sqldf:
     library("sqldf")
 
 ##`data`
-- The link to the mammal dataset again, or find the one you used during the last lesson
-[Download data files here](https://github.com/mqwilber/2016-04-14-ucsb/blob/gh-pages/data/mammal_stats.csv)
+For this section, let's load the file [mammal_stats.csv](./mammal_stats.csv) again (it might still be in your folder from the plyr lesson).
 
 ***
 
