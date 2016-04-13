@@ -8,7 +8,7 @@ title: SQL with dataframes
 
 **Supplementary Material**: 
 
-<!--[answers to exercises](sqldf-answers.txt)-->
+[answers to exercises](sqldf-answers.txt)
 - [reference](http://swcarpentry.github.io/sql-novice-survey/reference.html)
 
 # What is a relational database?
