@@ -66,8 +66,8 @@ img {
 
 <p><em>by Katja Seltmann</em> with excerpts from Software Carpentry SQLite lesson.</p>
 <p><strong>Supplementary Material</strong>:</p>
+<!--[answers to exercises](sqldf-answers.txt)-->
 <ul>
-<li><a href="ggplot-lesson-answers.R">answers to exercises</a></li>
 <li><a href="http://swcarpentry.github.io/sql-novice-survey/reference.html">reference</a></li>
 </ul>
 <div id="what-is-a-relational-database" class="section level1">
@@ -123,12 +123,15 @@ library(&quot;sqldf&quot;)</code></pre>
 <h2><code>data</code></h2>
 <p>For this section, let’s load the file <a href="http://mqwilber.github.io/2016-04-14-ucsb/lessons/plyr_reshape/mammal_stats.csv">mammal_stats.csv</a> again (it might still be in your folder from the plyr lesson).</p>
 <hr />
+<p>Check your working directory..</p>
+<pre><code>setwd(&quot;~/Desktop/software-carpentry-2016&quot;)</code></pre>
+<hr />
 </div>
 </div>
 <div id="reading-and-looking-at-your-data-frame-using-sql." class="section level1">
 <h1>Reading and looking at your data frame using SQL.</h1>
 <p>First, read in the data frame as we did before.</p>
-<pre><code>mammals &lt;- read.csv(&quot;./data/mammal_stats.csv&quot;, header=TRUE, stringsAsFactors=FALSE)</code></pre>
+<pre><code>mammals &lt;- read.csv(&quot;./data-files/mammal_stats.csv&quot;, header=TRUE)</code></pre>
 <ul>
 <li>stringsAsFactors: logical: should character vectors be converted to factors?</li>
 <li>header: logical: should the data frame use the first row as headers?</li>
@@ -153,34 +156,47 @@ sqldf(&quot;select * from mammals where `order`='Carnivora' limit 10&quot;)
 sqldf(&quot;select * from mammals where `order`='Carnivora' order by `adult_body_mass_g` desc limit 10&quot;)</code></pre>
 <hr />
 <blockquote>
-<p><strong>Exercise 1</strong>: Select unique species with litter_size greater than 1</p>
+<p><strong>Exercise 1</strong>: Select unique species with litter_size less than 1</p>
 </blockquote>
+<p>head(mammals) sqldf(“select distinct species, litter_size from mammals where litter_size&lt;‘1’”) sqldf()</p>
 <hr />
 <p>Select, change and create new data frames</p>
-<pre><code>sqldf(&quot;select distinct `order` as TOrder from mammals&quot;)
-mammalsEdited &lt;-  sqldf(&quot;select `order` as TOrder, species, adult_body_mass_g as mass from mammals&quot;)</code></pre>
+<pre><code>sqldf(&quot;select distinct `order` as taxonOrder from mammals&quot;)</code></pre>
+<hr />
+<p>Save your new dataframe as a different file</p>
+<pre><code>mammalsEdited &lt;-  sqldf(&quot;select `order` as taxonOrder, species, adult_body_mass_g as mass from mammals&quot;)</code></pre>
+<p>head(mammalsEdited)</p>
 <hr />
 <p>Concatination</p>
-<pre><code>sqldf(&quot;select TOrder || '-' || species as name from mammalsEdited limit 10&quot;)</code></pre>
+<pre><code>sqldf(&quot;select taxonOrder || '-' || species as name from mammalsEdited limit 10&quot;)</code></pre>
 <hr />
 <p>Remove white space</p>
-<pre><code>sqldf(&quot;select TOrder || '-' || replace(species,' ','-') as name from mammalsEdited limit 10&quot;)</code></pre>
+<pre><code>taxonString &lt;- sqldf(&quot;select species, taxonOrder || '-' || replace(species,' ','-') as name from mammalsEdited limit 10&quot;)</code></pre>
+<p>head(taxonString)</p>
 <hr />
-<p>Counting using SQL by Groups</p>
-<pre><code>sqldf(&quot;select TOrder, count(species) from mammalsEdited group by TOrder&quot;)</code></pre>
+<p>Counting using SQL by Groups and then making simple barplots</p>
+<p>numberSpecies &lt;- sqldf(“select count(species) as cnt,taxonOrder from mammalsEdited group by taxonOrder order by cnt desc”)</p>
+<p>nrow(sqldf(“select distinct taxonOrder from mammalsEdited”)) help(barplot)</p>
+<p>head(numberSpecies)</p>
+<p>par(las=2) # make label text perpendicular to axis par(mar=c(8,8,3,2)) # increase y-axis margin.</p>
+<p>barplot(numberSpecies<span class="math">\(cnt, col = heat.colors(29), names.arg=numberSpecies\)</span>taxonOrder)</p>
 <hr />
 <p>Finding maximum and minimum</p>
 <pre><code>sqldf(&quot;select max(adult_body_mass_g) from mammals&quot;)
 sqldf(&quot;select min(adult_body_mass_g) from mammals&quot;)
-sqldf(&quot;select * from mammals where adult_body_mass_g = (select min(adult_body_mass_g) from mammals)&quot;)</code></pre>
+sqldf(&quot;select * from mammals where adult_body_mass_g = (select max(adult_body_mass_g) from mammals)&quot;)</code></pre>
 <hr />
-<blockquote>
-<p><strong>Exercise 2</strong>:</p>
-</blockquote>
 <hr />
-<p>Save your new dataframe as a different file.</p>
 <hr />
-<p>Joining multiple tables (or data frames)</p>
+<p>Merging data frames</p>
+<p>A &lt;- data.frame(a1 = c(1, 2, 1), a2 = c(2, 3, 3), a3 = c(3, 1, 2)) B &lt;- data.frame(b1 = 1:2, b2 = 2:1) sqlMerge &lt;- sqldf(“select * from A, B”)</p>
+<p>head(sqlMerge)</p>
+<hr />
+<p>Joining multiple tables (or data frames). First you need an ID to join on! This should be a unique value. If you use SQL or relational databases, IDs become more important.</p>
+<p>Are the values unique?</p>
+<p>nrow(mammals)</p>
+<p>nrow(sqldf(“select distinct species from mammals”))</p>
+<hr />
 <pre><code>mammalsJoined &lt;- sqldf(&quot;select &quot;)
 mammalsEdited &lt;-  sqldf(&quot;select `order` as TOrder, species, adult_body_mass_g as mass from mammals&quot;)</code></pre>
 <hr />
