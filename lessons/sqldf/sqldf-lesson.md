@@ -8,7 +8,7 @@ title: SQL with dataframes
 
 **Supplementary Material**: 
 
-- [answers to exercises](ggplot-lesson-answers.R)
+<!--[answers to exercises](sqldf-answers.txt)-->
 - [reference](http://swcarpentry.github.io/sql-novice-survey/reference.html)
 
 # What is a relational database?
@@ -53,12 +53,17 @@ Here's how to install sqldf:
 For this section, let's load the file [mammal_stats.csv](http://mqwilber.github.io/2016-04-14-ucsb/lessons/plyr_reshape/mammal_stats.csv) again (it might still be in your folder from the plyr lesson).
 
 ***
+Check your working directory..
+
+    setwd("~/Desktop/software-carpentry-2016")
+
+***
 
 # Reading and looking at your data frame using SQL.
 
 First, read in the data frame as we did before.
 
-    mammals <- read.csv("./data/mammal_stats.csv", header=TRUE, stringsAsFactors=FALSE)
+    mammals <- read.csv("./data-files/mammal_stats.csv", header=TRUE)
     
 - stringsAsFactors: logical: should character vectors be converted to factors?
 - header: logical: should the data frame use the first row as headers?
@@ -94,30 +99,52 @@ Select using filters and ordering
 ***
 
 > **Exercise 1**:
-> Select unique species with litter_size greater than 1
+> Select unique species with litter_size less than 1
+
+head(mammals)
+sqldf("select distinct species, litter_size from mammals where litter_size<'1'")
+sqldf()
 
 ***
 
 Select, change and create new data frames
 
-    sqldf("select distinct `order` as TOrder from mammals")
-    mammalsEdited <-  sqldf("select `order` as TOrder, species, adult_body_mass_g as mass from mammals")
+    sqldf("select distinct `order` as taxonOrder from mammals")
+    
+***
+Save your new dataframe as a different file
+    
+    mammalsEdited <-  sqldf("select `order` as taxonOrder, species, adult_body_mass_g as mass from mammals")
+
+head(mammalsEdited)
 
 ***
 Concatination
 
-    sqldf("select TOrder || '-' || species as name from mammalsEdited limit 10")
+    sqldf("select taxonOrder || '-' || species as name from mammalsEdited limit 10")
 
 ***
 Remove white space
 
-    sqldf("select TOrder || '-' || replace(species,' ','-') as name from mammalsEdited limit 10")
+    taxonString <- sqldf("select species, taxonOrder || '-' || replace(species,' ','-') as name from mammalsEdited limit 10")
+
+head(taxonString)
 
 ***
 
-Counting using SQL by Groups
+Counting using SQL by Groups and then making simple barplots
 
-    sqldf("select TOrder, count(species) from mammalsEdited group by TOrder")
+numberSpecies <- sqldf("select count(species) as cnt,taxonOrder from mammalsEdited group by taxonOrder order by cnt desc")
+
+nrow(sqldf("select distinct taxonOrder from mammalsEdited"))
+help(barplot)
+    
+head(numberSpecies) 
+
+par(las=2) # make label text perpendicular to axis
+par(mar=c(8,8,3,2)) # increase y-axis margin.
+
+barplot(numberSpecies$cnt, col = heat.colors(29), names.arg=numberSpecies$taxonOrder)
 
 ***
 
@@ -125,20 +152,34 @@ Finding maximum and minimum
 
     sqldf("select max(adult_body_mass_g) from mammals")
     sqldf("select min(adult_body_mass_g) from mammals")
-    sqldf("select * from mammals where adult_body_mass_g = (select min(adult_body_mass_g) from mammals)")
+    sqldf("select * from mammals where adult_body_mass_g = (select max(adult_body_mass_g) from mammals)")
  
 *** 
 
-> **Exercise 2**:
->  
-
 *** 
 
-Save your new dataframe as a different file.
+
+
+***
+Merging data frames
+
+A <- data.frame(a1 = c(1, 2, 1), a2 = c(2, 3, 3), a3 = c(3, 1, 2))
+B <- data.frame(b1 = 1:2, b2 = 2:1)
+sqlMerge <- sqldf("select * from A, B")
+
+head(sqlMerge)
 
 ***
 
-Joining multiple tables (or data frames)
+Joining multiple tables (or data frames). First you need an ID to join on! This should be a unique value. If you use SQL or relational databases, IDs become more important.
+
+Are the values unique?
+
+nrow(mammals)
+
+nrow(sqldf("select distinct species from mammals"))
+
+***
 
     mammalsJoined <- sqldf("select ")
     mammalsEdited <-  sqldf("select `order` as TOrder, species, adult_body_mass_g as mass from mammals")
