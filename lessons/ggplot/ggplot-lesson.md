@@ -27,6 +27,7 @@ title: ggplot
 `plot(adult_head_body_len_mm~adult_body_mass_g, data=mammals)`
 
 OR
+<<<<<<< HEAD
 
 `ggplot(data=mammals, aes(x=adult_body_mass_g, y=adult_head_body_len_mm)) + geom_point()`  
 
@@ -37,6 +38,18 @@ Although the plots look similar, we can see differences in the basic structure o
 
 Both `plot` and `ggplot` can be used to make publication quality figures, and both certainly have limitations for some types of graphics.  Arguably, ggplot excels over base graphics for data exploration and consistent syntax, and we'll explore those in the end of the lesson.  
 
+=======
+
+`ggplot(data=mammals, aes(x=adult_body_mass_g, y=adult_head_body_len_mm)) + geom_point()`  
+
+Although the plots look similar, we can see differences in the basic structure of the code, and some of the default formatting.  The first is obvious, in which `plot(y~x)` means _"plot y with respect to x"_ which is pretty close to how we all learned to plot things back in the day.  That second line of code probably looks a little like gobbledygook.  But it won't help you get gold out of Gringott's until you understand all its parts.
+
+
+# So why do we need another plotting method, to make the same plot?
+
+Both `plot` and `ggplot` can be used to make publication quality figures, and both certainly have limitations for some types of graphics.  Arguably, ggplot excels over base graphics for data exploration and consistent syntax, and we'll explore those in the end of the lesson.  
+
+>>>>>>> d0bb00d9ecb438af12ed57bbc7f91ac0e24a3dca
 ggplot2 Pros:| ggplot2 Cons:|
 -|-|
 consistent, concise syntax | different syntax from the rest of R|
@@ -59,10 +72,17 @@ Let's install and load our `ggplot2` package.  We might also use our `dPlyr` ski
     install.packages("ggplot2", dependencies = TRUE)  
     library(ggplot2)
     library(dplyr)
+<<<<<<< HEAD
 
 
 Second, reload the data if you need to:
 
+=======
+
+
+Second, reload the data if you need to:
+
+>>>>>>> d0bb00d9ecb438af12ed57bbc7f91ac0e24a3dca
     #loading mammals dataset for ggplot exercise:
     setwd("C:/Users/Thomas/Documents/2016-04-14-ucsb/data/")
     mammals <- read.csv("mammal_stats.csv", head=T)
@@ -116,10 +136,17 @@ Let's **build** a scatter plot of mammal body size and litter size.
 For **aes**thetics.
 
 How your data are to be visually represented.  `aes()` is an argument within `ggplot` that takes its own arguments, `aes(x=, y=)`.  These are your independent (x) variable and your dependent (y) variable.  `ggplot2` nerds call this *mapping*.  As I understand it, they mean that you are *mapping* data points by the data values, in a 'landscape' of a coordinate system based on your data. Mapping will be important later, when we add meaningful colors and symbols to differentiate things like mice and whales, based on a variable that corresponds to one of our mapped data points.
+<<<<<<< HEAD
 
     myplot<-ggplot(data=mammals, aes(x=adult_body_mass_g, y=adult_head_body_len_mm))
     myplot  
 
+=======
+
+    myplot<-ggplot(data=mammals, aes(x=adult_body_mass_g, y=adult_head_body_len_mm))
+    myplot  
+
+>>>>>>> d0bb00d9ecb438af12ed57bbc7f91ac0e24a3dca
 If you executed `myplot` you probably got an empty plot.  So far, we have told ggplot where to look for data, and how to represent that data, but not what to do with the data values.  So there is nice space for our data... but we still need to actually plot the data.  
 
 ***
@@ -323,6 +350,7 @@ Lets apply the Fantastic Fox palette (because, mammals), and default theme `them
 If you don't specify file path, it will save to your working directory.  You may be saving figures into your data folder.
 
 > You can save as most image formats (jpeg, TIFF, PNG, PDF, etc.), as well as specify the size and resolution (dpi, ppi) of the image.
+<<<<<<< HEAD
 
 The following will actually save any figure you make in R, whether you produce it using `ggplot` or `plot`:
 
@@ -341,11 +369,22 @@ The following will actually save any figure you make in R, whether you produce i
 
 > **Challenge:**
 > Save one of the figures you made in this lesson, and email it to your advisor, with the subject line "For your refrigerator!"
+=======
+
+The following will actually save any figure you make in R, whether you produce it using `ggplot` or `plot`:
+
+    ppi<-300
+    jpeg(file="Figure1.jpg", width=6, height=8, units="in", res=ppi)
+    myplot
+    dev.off()
+>>>>>>> d0bb00d9ecb438af12ed57bbc7f91ac0e24a3dca
 
 ***
 
-##Lastly:
+> **Challenge:**
+> Yesterday we made this scatter plot: plot(avg_day_inflammation).  Reproduce and improve the inflammation plot we created yesterday.  Hint: ggplot needs a data.frame.
 
+<<<<<<< HEAD
 > There are many packages that will enhance ggplots, and allow you to use other data structures, theme elements, or to combine plots.  Here are a few: ggthemes, gridExtra, colorbrewer, ggbiplot, ggmap
 
 > ggplot2 will probably not replace all other graphics tools.  You may still use base graphics, and you may export ggplot figures to graphics programs like Illustrator for final touches.
@@ -362,6 +401,30 @@ Graphics are an important part of the process of scientific computing and resear
 
 ***
 
+=======
+> **Challenge:**
+> Using `ggplot` recreate the example plot of rodent and cetacean body size v. litter size shown in the beginning of the lesson.  For extra challenge, use `plot` in base R.
 
+> **Challenge:**
+> Save one of the figures you made in this lesson, and email it to your advisor, with the subject line "For your refrigerator!"
 
+***
 
+##Lastly:
+>>>>>>> d0bb00d9ecb438af12ed57bbc7f91ac0e24a3dca
+
+> There are many packages that will enhance ggplots, and allow you to use other data structures, theme elements, or to combine plots.  Here are a few: ggthemes, gridExtra, colorbrewer, ggbiplot, ggmap
+
+> ggplot2 will probably not replace all other graphics tools.  You may still use base graphics, and you may export ggplot figures to graphics programs like Illustrator for final touches.
+
+Graphics are an important part of the process of scientific computing and research - from data exploration to communication.  We hope we have shown you the building blocks for making figures that help you discover new things about your self!
+
+> ## Key Points
+> * What is ggplot?  And why have multiple graphics tools?
+> * Parts of a ggplot figure: *ggplot, data, aes, geom*.
+> * Using mapping to make your figures more informative.
+> * How *facets* are helpful and how to make them.
+> * Using themes to make your figures more pleasing.
+> * Saving figures.
+
+***
