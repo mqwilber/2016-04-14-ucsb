@@ -38,9 +38,19 @@
 </ul>
 </div>
 </section>
-<p>Once Git is configured, we can start using it. Let’s first download some of the <a href="../data/data-files.zip">data we are using for this workshop</a>. Then create a directory for our work and put the downloaded data folder into that directory. Afterward, move into the directory...</p>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2><span class="glyphicon glyphicon-pencil"></span>Download workshop data</h2>
+</div>
+<div class="panel-body">
+<p>Once Git is configured, we can start using it. Let’s first download some of the <a href="../data/data-files.zip">data we are using for this workshop</a>. Move the data-files folder to the desktop.</p>
+</div>
+</section>
+
+Now that we have our data folder, lets create a folder for all of our workshop R scripts and move it into that folder.
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> ~/Desktop
 $ <span class="kw">mkdir</span> software-carpentry-2016
+<code class="sourceCode bash">$ <span class="kw">mv data-files software-carpentry-2016/</span>
 $ <span class="kw">cd</span> software-carpentry-2016</code></pre>
 <p>Then we tell Git to make <code>software-carpentry-2016</code> a <a href="reference.html#repository">repository</a>—a place where Git can store versions of our files:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> init</code></pre>

@@ -79,12 +79,12 @@ $ <span class="kw">git</span> init</code></pre>
 <img src="fig/github-change-repo-string.png" alt="Changing the Repository URL on GitHub" /><p class="caption">Changing the Repository URL on GitHub</p>
 </div>
 <p>Copy that URL from the browser, go into the local <code>data-carpentry-2016</code> repository, and run this command:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> remote add origin https://github.com/vlad/data-carpentry-2016</code></pre>
-<p>Make sure to use the URL for your repository rather than Vlad’s: the only difference should be your username instead of <code>vlad</code>.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> remote add origin https://github.com/seltmann/data-carpentry-2016</code></pre>
+<p>Make sure to use the URL for your repository rather than Vlad’s: the only difference should be your username instead of <code>seltmann</code>.</p>
 <p>We can check that the command has worked by running <code>git remote -v</code>:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> remote -v</code></pre>
-<pre class="output"><code>origin   https://github.com/vlad/data-carpentry-2016.git (push)
-origin   https://github.com/vlad/data-carpentry-2016.git (fetch)</code></pre>
+<pre class="output"><code>origin   https://github.com/seltmann/data-carpentry-2016.git (push)
+origin   https://github.com/seltmann/data-carpentry-2016.git (fetch)</code></pre>
 <p>The name <code>origin</code> is a local nickname for your remote repository: we could use something else if we wanted to, but <code>origin</code> is by far the most common choice.</p>
 <p>Once the nickname <code>origin</code> is set up, this command will push the changes from our local repository to the repository on GitHub:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> push origin master</code></pre>
@@ -93,7 +93,7 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (6/6), done.
 Writing objects: 100% (9/9), 821 bytes, done.
 Total 9 (delta 2), reused 0 (delta 0)
-To https://github.com/vlad/data-carpentry-2016
+To https://github.com/seltmann/data-carpentry-2016
  * [new branch]      master -&gt; master
 Branch master set up to track remote branch master from origin.</code></pre>
 <aside class="callout panel panel-info">
@@ -123,17 +123,17 @@ $ <span class="kw">git</span> config --global --unset https.proxy</code></pre>
 <div class="figure">
 <img src="fig/github-repo-after-first-push.svg" alt="GitHub Repository After First Push" /><p class="caption">GitHub Repository After First Push</p>
 </div>
-<aside class="callout panel panel-info">
+<!--<aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-pushpin"></span>The ‘-u’ Flag</h2>
 </div>
 <div class="panel-body">
 <p>You may see a <code>-u</code> option used with <code>git push</code> in some documentation. It is related to concepts we cover in our intermediate lesson, and can safely be ignored for now.</p>
 </div>
-</aside>
+</aside>-->
 <p>We can pull changes from the remote repository to the local one as well:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> pull origin master</code></pre>
-<pre class="output"><code>From https://github.com/vlad/data-carpentry-2016
+<pre class="output"><code>From https://github.com/seltmann/data-carpentry-2016
  * branch            master     -&gt; FETCH_HEAD
 Already up-to-date.</code></pre>
 <p>Pulling has no effect in this case because the two repositories are already synchronized. If someone else had pushed some changes to the repository on GitHub, though, this command would download them to our local repository.</p>
@@ -141,8 +141,8 @@ Already up-to-date.</code></pre>
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-pencil"></span>GitHub Timestamp</h2>
 </div>
-<div class="panel-body">
-<p>Create a repository on GitHub, clone it, add a file, push those changes to GitHub, and then look at the <a href="reference.html#timestamp">timestamp</a> of the change on GitHub. How does GitHub record times, and why?</p>
+<!--<div class="panel-body">
+<p>Create a repository on GitHub, clone it, add a file, push those changes to GitHub, and then look at the <a href="reference.html#timestamp">timestamp</a> of the change on GitHub. How does GitHub record times, and why?</p>-->
 </div>
 </section>
         </div>
