@@ -10,6 +10,7 @@ title: SQL with dataframes
 
 - [answers to exercises](sqldf-answers.txt)
 - [reference](http://swcarpentry.github.io/sql-novice-survey/reference.html)
+- [SQLite function reference](https://www.sqlite.org/lang_corefunc.html)
 
 # What is a relational database?
 
@@ -76,7 +77,7 @@ R gives you lots of ways to look at your dataframe.
     ncol(mammals)
     View(mammals)
     
-SQL gives you more ways..
+SQL gives you more ways with Select.
 
     sqldf("select distinct species from mammals")
     sqldf("select distinct `order`,species from mammals")
@@ -84,16 +85,16 @@ SQL gives you more ways..
 > **TIP**: The word ***order*** is a column name, but it is also a command reserved in SQL. Put column names in `` to avoid confusion.
 
 ***
-Select statements using SQL. * indicates selecting all.
+Select statements using SQL. * indicates selecting all columns.
 
     sqldf("select * from mammals")
 
-Select distinct values
+Select distinct values in rows.
 
     sqldf("select distinct `order` from mammals")
     
 
-Select using filters and ordering
+Select using filters and ordering.
 
     sqldf("select * from mammals where `order`='Carnivora'")
     sqldf("select * from mammals where `order`='Carnivora' limit 10")
@@ -146,6 +147,12 @@ Finding maximum and minimum
     sqldf("select * from mammals where adult_body_mass_g = (select max(adult_body_mass_g) from mammals)")
  
 *** 
+SQL has a lot of built in [functions](https://www.sqlite.org/lang_corefunc.html) that can help with processing numbers or text. 
+
+Some particularly helpful ones are: trim(), upper(), round(), random(), but there are many others!
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Function_machine2.svg/220px-Function_machine2.svg.png" height="200px" align="middle"  />
+
 
 *** 
 
