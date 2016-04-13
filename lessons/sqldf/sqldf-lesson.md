@@ -8,7 +8,7 @@ title: SQL with dataframes
 
 **Supplementary Material**: 
 
-[answers to exercises](sqldf-answers.txt)
+- [answers to exercises](sqldf-answers.txt)
 - [reference](http://swcarpentry.github.io/sql-novice-survey/reference.html)
 
 # What is a relational database?
@@ -31,14 +31,14 @@ SQL | spreadsheets|
 ---------------|---------------|
 relational | not relational|
 handle more data | slow down quickly|
-develop good practices | bad practices|
+develop open science practices | difficult to follow methods|
 easy to backup | easy to loose data|
 
 ***
 
 # Getting Started:
 
-We are going to learn the basics of SQLite using data frames. You can think of a data frame as if they were tables in a relational database. We can do this with sqldf package.
+We are going to learn the basics of SQL using SQLite using data frames. You can think of a data frame as if they were tables in a relational database. We can do this with sqldf package.
 
 <img src="http://thecodebug.com/wp-content/uploads/2015/01/linq4.gif" height="200px" align="middle"  />
 
@@ -71,7 +71,10 @@ First, read in the data frame as we did before.
 ***
 R gives you lots of ways to look at your dataframe.
 
-    head(mammals) tail(mammals) ncol(mammals) View(mammals)
+    head(mammals)
+    tail(mammals)
+    ncol(mammals)
+    View(mammals)
     
 SQL gives you more ways..
 
@@ -101,10 +104,6 @@ Select using filters and ordering
 > **Exercise 1**:
 > Select unique species with litter_size less than 1
 
-head(mammals)
-sqldf("select distinct species, litter_size from mammals where litter_size<'1'")
-sqldf()
-
 ***
 
 Select, change and create new data frames
@@ -115,8 +114,7 @@ Select, change and create new data frames
 Save your new dataframe as a different file
     
     mammalsEdited <-  sqldf("select `order` as taxonOrder, species, adult_body_mass_g as mass from mammals")
-
-head(mammalsEdited)
+    head(mammalsEdited)
 
 ***
 Concatination
@@ -127,24 +125,17 @@ Concatination
 Remove white space
 
     taxonString <- sqldf("select species, taxonOrder || '-' || replace(species,' ','-') as name from mammalsEdited limit 10")
-
-head(taxonString)
+    head(taxonString)
 
 ***
 
 Counting using SQL by Groups and then making simple barplots
 
-numberSpecies <- sqldf("select count(species) as cnt,taxonOrder from mammalsEdited group by taxonOrder order by cnt desc")
-
-nrow(sqldf("select distinct taxonOrder from mammalsEdited"))
-help(barplot)
-    
-head(numberSpecies) 
-
-par(las=2) # make label text perpendicular to axis
-par(mar=c(8,8,3,2)) # increase y-axis margin.
-
-barplot(numberSpecies$cnt, col = heat.colors(29), names.arg=numberSpecies$taxonOrder)
+    numberSpecies <- sqldf("select count(species) as cnt,taxonOrder from mammalsEdited group by taxonOrder order by cnt desc")
+    head(numberSpecies) 
+    par(las=2) # make label text perpendicular to axis
+    par(mar=c(8,8,3,2)) # increase y-axis margin.
+    barplot(numberSpecies$cnt, names.arg=numberSpecies$taxonOrder)
 
 ***
 
@@ -163,11 +154,11 @@ Finding maximum and minimum
 ***
 Merging data frames
 
-A <- data.frame(a1 = c(1, 2, 1), a2 = c(2, 3, 3), a3 = c(3, 1, 2))
-B <- data.frame(b1 = 1:2, b2 = 2:1)
-sqlMerge <- sqldf("select * from A, B")
+    A <- data.frame(a1 = c(1, 2, 1), a2 = c(2, 3, 3), a3 = c(3, 1, 2))
+    B <- data.frame(b1 = 1:2, b2 = 2:1)
+    sqlMerge <- sqldf("select * from A, B")
 
-head(sqlMerge)
+    head(sqlMerge)
 
 ***
 
@@ -175,9 +166,8 @@ Joining multiple tables (or data frames). First you need an ID to join on! This 
 
 Are the values unique?
 
-nrow(mammals)
-
-nrow(sqldf("select distinct species from mammals"))
+    nrow(mammals)
+    nrow(sqldf("select distinct species from mammals"))
 
 ***
 
