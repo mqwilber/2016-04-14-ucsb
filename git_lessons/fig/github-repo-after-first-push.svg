@@ -18,8 +18,8 @@
 				<path id="path4656" inkscape:connector-curvature="0" fill="#B5B5B5" stroke="#FFFFFF" stroke-miterlimit="10" d="M598,63
 					c0-8.284-6.716-15-15-15H198c-8.284,0-15,6.716-15,15v167c0,8.284,6.716,15,15,15H583c8.284,0,15-6.716,15-15V63z"/>
 				<rect id="rect4658" x="197" y="59" fill="none" width="425" height="70.269"/>
-				<text transform="matrix(1 0 0 1 197.0002 71.4199)" font-family="'Consolas'" font-size="18">.git</text>
-				<text transform="matrix(1 0 0 1 135.9885 90.0195)" font-family="'Consolas'" font-size="10.8">origin https://github.com/vlad/software-carpentry-2016.git</text>
+				<text transform="matrix(1 0 0 1 188.0002 66.4199)" font-family="'Consolas'" font-size="18">.git</text>
+				<text transform="matrix(1 0 0 1 104.9768 81.0195)" font-family="'Consolas'" font-size="10.8">origin https://github.com/seltmann/software-carpentry-2016.git</text>
 			</g>
 			<rect id="rect4666" x="16" y="19" fill="none" width="195.585" height="24.449"/>
 			<text id="text4668" transform="matrix(1 0 0 1 16.0002 28.707)" font-family="'Helvetica'" font-size="13.5">~/Desktop/seltmann/software-carpentry-2016</text>
