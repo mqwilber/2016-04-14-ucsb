@@ -66,7 +66,6 @@ First, read in the data frame as we did before.
 
     mammals <- read.csv("./data-files/mammal_stats.csv", header=TRUE)
     
-- stringsAsFactors: logical: should character vectors be converted to factors?
 - header: logical: should the data frame use the first row as headers?
 
 ***
@@ -77,21 +76,17 @@ R gives you lots of ways to look at your dataframe.
     ncol(mammals)
     View(mammals)
     
-SQL gives you more ways with Select.
+SQL gives you more ways with Select. Select statements using SQL. * indicates selecting all columns.
 
-    sqldf("select distinct species from mammals")
-    sqldf("select distinct `order`,species from mammals")
+    sqldf("select * from mammals limit 10")
 
 > **TIP**: The word ***order*** is a column name, but it is also a command reserved in SQL. Put column names in `` to avoid confusion.
 
 ***
-Select statements using SQL. * indicates selecting all columns.
-
-    sqldf("select * from mammals")
-
 Select distinct values in rows.
 
     sqldf("select distinct `order` from mammals")
+    sqldf("select distinct `order`,species from mammals")
     
 
 Select using filters and ordering.
@@ -101,7 +96,6 @@ Select using filters and ordering.
     sqldf("select * from mammals where `order`='Carnivora' order by `adult_body_mass_g` desc limit 10")
 
 ***
-
 > **Exercise 1**:
 > Select unique species with litter_size less than 1
 
@@ -129,7 +123,6 @@ Remove white space
     head(taxonString)
 
 ***
-
 Counting using SQL by Groups and then making simple barplots
 
     numberSpecies <- sqldf("select count(species) as cnt,taxonOrder from mammalsEdited group by taxonOrder order by cnt desc")
@@ -139,7 +132,6 @@ Counting using SQL by Groups and then making simple barplots
     barplot(numberSpecies$cnt, names.arg=numberSpecies$taxonOrder)
 
 ***
-
 Finding maximum and minimum
 
     sqldf("select max(adult_body_mass_g) from mammals")
@@ -153,33 +145,43 @@ Some particularly helpful ones are: trim(), upper(), round(), random(), but ther
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Function_machine2.svg/220px-Function_machine2.svg.png" height="200px" align="middle"  />
 
-
 *** 
-
-
+> **Exercise 2**:
+> Use the upper() function to output the taxonOrder names in mammalsEdited all in uppercase. Write the output to a new data frame.
 
 ***
-Merging data frames
+Merging or joining data frames
 
     A <- data.frame(a1 = c(1, 2, 1), a2 = c(2, 3, 3), a3 = c(3, 1, 2))
     B <- data.frame(b1 = 1:2, b2 = 2:1)
     sqlMerge <- sqldf("select * from A, B")
 
     head(sqlMerge)
+    
+Let's do this with our concatinated string for the mammal names. Remember the taxonString data frame created from editing mammalsEdited?
+
+    head(taxonString)
+    head(mammalsEdited)
+
+    sqlMergeMammals <- sqldf("select * from taxonString,mammalsEdited")
+
+    head(sqlMergeMammals)
+
+    sqlMergeMammals <- sqldf("select * from taxonString,mammalsEdited")
+
+    sqlJoinMammals <- sqldf("select taxonOrder,mass,mammalsEdited.species,taxonString.name from mammalsEdited natural join taxonString")
+
+    head(sqlJoinMammals)
+    
+ <img src="https://s-media-cache-ak0.pinimg.com/736x/e3/e9/02/e3e90236dfce025c9f4ac9aec842f246.jpg" height="300px" align="middle"  />
+ 
+
 
 ***
+> **Exercise 3**:
+> Create a new dataframe that counts the number of species for every order. Merge that number in a new column in the sqlJoinMammals data frame.
+> **TIP**: We already did the counts in the data frame **numberSpecies**.
 
-Joining multiple tables (or data frames). First you need an ID to join on! This should be a unique value. If you use SQL or relational databases, IDs become more important.
-
-Are the values unique?
-
-    nrow(mammals)
-    nrow(sqldf("select distinct species from mammals"))
-
-***
-
-    mammalsJoined <- sqldf("select ")
-    mammalsEdited <-  sqldf("select `order` as TOrder, species, adult_body_mass_g as mass from mammals")
 ***
 
 
