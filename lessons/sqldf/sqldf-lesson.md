@@ -48,6 +48,7 @@ We are going to learn the basics of SQL using SQLite using data frames. You can 
 Here's how to install sqldf:
 
     install.packages("sqldf", dependencies = TRUE)  
+    
     library("sqldf")
 
 ##`data`
@@ -86,18 +87,26 @@ SQL gives you more ways with Select. Select statements using SQL. * indicates se
 Select distinct values in rows.
 
     sqldf("select distinct `order` from mammals")
+    
     sqldf("select distinct `order`,species from mammals")
     
 
 Select using filters and ordering.
 
     sqldf("select * from mammals where `order`='Carnivora'")
+    
     sqldf("select * from mammals where `order`='Carnivora' limit 10")
+    
     sqldf("select * from mammals where `order`='Carnivora' order by `adult_body_mass_g` desc limit 10")
 
 ***
 > **Exercise 1**:
 > Select unique species with litter_size less than 1
+
+***
+Select based on wildcard searching.
+
+    sqldf("select * from  mammals `order` where species like 'Canis%'")
 
 ***
 
@@ -109,6 +118,7 @@ Select, change and create new data frames
 Save your new dataframe as a different file
     
     mammalsEdited <-  sqldf("select `order` as taxonOrder, species, adult_body_mass_g as mass from mammals")
+    
     head(mammalsEdited)
 
 ***
@@ -120,22 +130,30 @@ Concatination
 Remove white space
 
     taxonString <- sqldf("select species, taxonOrder || '-' || replace(species,' ','-') as name from mammalsEdited limit 10")
+    
     head(taxonString)
 
 ***
 Counting using SQL by Groups and then making simple barplots
 
     numberSpecies <- sqldf("select count(species) as cnt,taxonOrder from mammalsEdited group by taxonOrder order by cnt desc")
+    
     head(numberSpecies) 
+    
     par(las=2) # make label text perpendicular to axis
-    par(mar=c(8,8,3,2)) # increase y-axis margin.
-    barplot(numberSpecies$cnt, names.arg=numberSpecies$taxonOrder)
+    
+    par(mar=c(8,8,3,2)) # increase y-axis margin
+    
+    barplot(log(numberSpecies$cnt), names.arg=numberSpecies$taxonOrder)
+    
 
 ***
 Finding maximum and minimum
 
     sqldf("select max(adult_body_mass_g) from mammals")
+    
     sqldf("select min(adult_body_mass_g) from mammals")
+    
     sqldf("select * from mammals where adult_body_mass_g = (select max(adult_body_mass_g) from mammals)")
  
 *** 
@@ -150,10 +168,19 @@ Some particularly helpful ones are: trim(), upper(), round(), random(), but ther
 > Use the upper() function to output the taxonOrder names in mammalsEdited all in uppercase. Write the output to a new data frame.
 
 ***
+
+#Advanced methods sqldf() 
+
+We have come far! Now, lets figure out how to do more complex actions in sql.
+
+***
+
 Merging or joining data frames
 
     A <- data.frame(a1 = c(1, 2, 1), a2 = c(2, 3, 3), a3 = c(3, 1, 2))
+    
     B <- data.frame(b1 = 1:2, b2 = 2:1)
+    
     sqlMerge <- sqldf("select * from A, B")
 
     head(sqlMerge)
@@ -161,13 +188,12 @@ Merging or joining data frames
 Let's do this with our concatinated string for the mammal names. Remember the taxonString data frame created from editing mammalsEdited?
 
     head(taxonString)
+    
     head(mammalsEdited)
 
     sqlMergeMammals <- sqldf("select * from taxonString,mammalsEdited")
 
     head(sqlMergeMammals)
-
-    sqlMergeMammals <- sqldf("select * from taxonString,mammalsEdited")
 
     sqlJoinMammals <- sqldf("select taxonOrder,mass,mammalsEdited.species,taxonString.name from mammalsEdited natural join taxonString")
 
@@ -180,26 +206,38 @@ Let's do this with our concatinated string for the mammal names. Remember the ta
 > Create a new dataframe that counts the number of species for every order. Merge that number in a new column in the sqlJoinMammals data frame.
 > **TIP**: We already did the counts in the data frame **numberSpecies**.
 
-***
-
-##Advanced methods sqldf() 
-We have come far! Now, lets figure out how to do more complex actions in sql.
 
 ***
-    Delete and Update
+Update a data frame
 
-    sqlJoinMammals <- sqldf(c("delete from sqlJoinMammals where taxonOrder='Carnivora'"))
+    sql1 <- "update sqlJoinMammals set taxonOrder='Primates' where name='Artiodactyla-Camelus-dromedarius'"
+    
+    sql2 <- "select * from sqlJoinMammals"
+    
+    sqldf(c(sql1, sql2))
+    
+    
+***
+Delete values
 
     noCarnivora <- sqldf(c("delete from sqlJoinMammals where taxonOrder='Carnivora'", "select * from sqlJoinMammals"))
 
     head(noCarnivora)
+    
+***
 
-    updateValues <- sqldf(c("update sqlJoinMammals set mass = '28' where species='Artiodactyla-Camelus-dromedarius'", "select * from sqlJoinMammals"))
+    updateValues <- sqldf(c("update sqlJoinMammals set mass = '28' where name='Artiodactyla-Camelus-dromedarius'", "select * from sqlJoinMammals"))
 
     head(updateValues)
 
-    sql1 <- identity("update sqlJoinMammals set taxonOrder='Carnivora' where name='Artiodactyla-Bos-frontalis'")
-    sql2 <- "select * from sqlJoinMammals"
-    sqldf(c(sql1, sql2))
+***
+> **Exercise 4**:  
+ > Round the mass of all values in updateValues.
 
+***
+#What we did not cover
+
+We covered basic syntax of sql using sqlLite syntax. We did not cover creating a database or inserting into a database. There are a lot of good tutorials online to learn more:
+
+- [Sandy Muspratt's R Blog](http://sandymuspratt.blogspot.com/2012/11/r-and-sqlite-part-1.html)
 
