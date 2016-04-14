@@ -51,7 +51,7 @@ Here's how to install sqldf:
     library("sqldf")
 
 ##`data`
-For this section, let's load the file [mammal_stats.csv](http://mqwilber.github.io/2016-04-14-ucsb/lessons/plyr_reshape/mammal_stats.csv) again (it might still be in your folder from the plyr lesson).
+For this section, let's load the file [mammal_stats.csv](http://mqwilber.github.io/2016-04-14-ucsb/lessons/plyr_reshape/mammal_stats.csv) again (it might still be in memory from the plyr lesson).
 
 ***
 Check your working directory..
@@ -175,8 +175,6 @@ Let's do this with our concatinated string for the mammal names. Remember the ta
     
  <img src="https://s-media-cache-ak0.pinimg.com/736x/e3/e9/02/e3e90236dfce025c9f4ac9aec842f246.jpg" height="300px" align="middle"  />
  
-
-
 ***
 > **Exercise 3**:
 > Create a new dataframe that counts the number of species for every order. Merge that number in a new column in the sqlJoinMammals data frame.
@@ -184,6 +182,24 @@ Let's do this with our concatinated string for the mammal names. Remember the ta
 
 ***
 
+##Advanced methods sqldf() 
+We have come far! Now, lets figure out how to do more complex actions in sql.
 
+***
+    Delete and Update
+
+    sqlJoinMammals <- sqldf(c("delete from sqlJoinMammals where taxonOrder='Carnivora'"))
+
+    noCarnivora <- sqldf(c("delete from sqlJoinMammals where taxonOrder='Carnivora'", "select * from sqlJoinMammals"))
+
+    head(noCarnivora)
+
+    updateValues <- sqldf(c("update sqlJoinMammals set mass = '28' where species='Artiodactyla-Camelus-dromedarius'", "select * from sqlJoinMammals"))
+
+    head(updateValues)
+
+    sql1 <- identity("update sqlJoinMammals set taxonOrder='Carnivora' where name='Artiodactyla-Bos-frontalis'")
+    sql2 <- "select * from sqlJoinMammals"
+    sqldf(c(sql1, sql2))
 
 
