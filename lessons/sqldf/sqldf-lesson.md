@@ -169,7 +169,7 @@ Some particularly helpful ones are: trim(), upper(), round(), random(), but ther
 
 ***
 
-#Advanced methods sqldf() 
+# Advanced methods sqldf() 
 
 We have come far! Now, lets figure out how to do more complex actions in sql.
 
