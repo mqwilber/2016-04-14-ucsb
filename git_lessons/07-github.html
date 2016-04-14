@@ -42,11 +42,11 @@
 </section>
 <p>Version control really comes into its own when we begin to collaborate with other people. We already have most of the machinery we need to do this; the only thing missing is to copy changes from one repository to another.</p>
 <p>Systems like Git allow us to move work between any two repositories. In practice, though, it’s easiest to use one copy as a central hub, and to keep it on the web rather than on someone’s laptop. Most programmers use hosting services like <a href="http://github.com">GitHub</a>, <a href="http://bitbucket.org">BitBucket</a> or <a href="http://gitlab.com/">GitLab</a> to hold those master copies; we’ll explore the pros and cons of this in the final section of this lesson.</p>
-<p>Let’s start by sharing the changes we’ve made to our current project with the world. Log in to GitHub, then click on the icon in the top right corner to create a new repository called <code>data-carpentry-2016</code>:</p>
+<p>Let’s start by sharing the changes we’ve made to our current project with the world. Log in to GitHub, then click on the icon in the top right corner to create a new repository called <code>software-carpentry-2016</code>:</p>
 <div class="figure">
 <img src="fig/github-create-repo-01.png" alt="Creating a Repository on GitHub (Step 1)" /><p class="caption">Creating a Repository on GitHub (Step 1)</p>
 </div>
-<p>Name your repository “data-carpentry-2016” and then click “Create Repository”:</p>
+<p>Name your repository “software-carpentry-2016” and then click “Create Repository”:</p>
 <div class="figure">
 <img src="fig/github-create-repo-02.png" alt="Creating a Repository on GitHub (Step 2)" /><p class="caption">Creating a Repository on GitHub (Step 2)</p>
 </div>
@@ -55,8 +55,8 @@
 <img src="fig/github-create-repo-03.png" alt="Creating a Repository on GitHub (Step 3)" /><p class="caption">Creating a Repository on GitHub (Step 3)</p>
 </div>
 <p>This effectively does the following on GitHub’s servers:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> data-carpentry-2016
-$ <span class="kw">cd</span> data-carpentry-2016
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> software-carpentry-2016
+$ <span class="kw">cd</span> software-carpentry-2016
 $ <span class="kw">git</span> init</code></pre>
 <p>Our local repository still contains our earlier work on <code>mars.txt</code>, but the remote repository on GitHub doesn’t contain any files yet:</p>
 <div class="figure">
@@ -78,13 +78,13 @@ $ <span class="kw">git</span> init</code></pre>
 <div class="figure">
 <img src="fig/github-change-repo-string.png" alt="Changing the Repository URL on GitHub" /><p class="caption">Changing the Repository URL on GitHub</p>
 </div>
-<p>Copy that URL from the browser, go into the local <code>data-carpentry-2016</code> repository, and run this command:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> remote add origin https://github.com/seltmann/data-carpentry-2016</code></pre>
+<p>Copy that URL from the browser, go into the local <code>software-carpentry-2016</code> repository, and run this command:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> remote add origin https://github.com/seltmann/software-carpentry-2016</code></pre>
 <p>Make sure to use the URL for your repository rather than Vlad’s: the only difference should be your username instead of <code>seltmann</code>.</p>
 <p>We can check that the command has worked by running <code>git remote -v</code>:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> remote -v</code></pre>
-<pre class="output"><code>origin   https://github.com/seltmann/data-carpentry-2016.git (push)
-origin   https://github.com/seltmann/data-carpentry-2016.git (fetch)</code></pre>
+<pre class="output"><code>origin   https://github.com/seltmann/software-carpentry-2016.git (push)
+origin   https://github.com/seltmann/software-carpentry-2016.git (fetch)</code></pre>
 <p>The name <code>origin</code> is a local nickname for your remote repository: we could use something else if we wanted to, but <code>origin</code> is by far the most common choice.</p>
 <p>Once the nickname <code>origin</code> is set up, this command will push the changes from our local repository to the repository on GitHub:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> add .</code></pre>
@@ -95,7 +95,7 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (6/6), done.
 Writing objects: 100% (9/9), 821 bytes, done.
 Total 9 (delta 2), reused 0 (delta 0)
-To https://github.com/seltmann/data-carpentry-2016
+To https://github.com/seltmann/software-carpentry-2016
  * [new branch]      master -&gt; master
 Branch master set up to track remote branch master from origin.</code></pre>
 <aside class="callout panel panel-info">
@@ -135,7 +135,7 @@ $ <span class="kw">git</span> config --global --unset https.proxy</code></pre>
 </aside>-->
 <p>We can pull changes from the remote repository to the local one as well:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> pull origin master</code></pre>
-<pre class="output"><code>From https://github.com/seltmann/data-carpentry-2016
+<pre class="output"><code>From https://github.com/seltmann/software-carpentry-2016
  * branch            master     -&gt; FETCH_HEAD
 Already up-to-date.</code></pre>
 <p>Pulling has no effect in this case because the two repositories are already synchronized. If someone else had pushed some changes to the repository on GitHub, though, this command would download them to our local repository.</p>
