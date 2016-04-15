@@ -38,7 +38,7 @@
 </ul>
 </div>
 </section>
-<p>For the next step, get into pairs. Pick one of your repositories on GitHub to use for collaboration.</p>
+<p>For the next step, get into pairs. Pick one of your repositories on GitHub to use for collaboration. If you were here yesterday, choose the use the <code>software-carpentry-2016</code> that you made yesterday</p>
 <aside class="callout panel panel-info">
 <div class="panel-heading">
 <h2><span class="glyphicon glyphicon-pushpin"></span>Practicing by yourself</h2>
@@ -51,15 +51,15 @@
 <div class="figure">
 <img src="fig/github-add-collaborators.png" alt="Adding collaborators on GitHub" /><p class="caption">Adding collaborators on GitHub</p>
 </div>
-<p>The other partner should <code>cd</code> to another directory (so <code>ls</code> doesn’t show a <code>planets</code> folder), and then make a copy of this repository on your own computer:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> clone https://github.com/vlad/planets.git</code></pre>
-<p>Replace ‘vlad’ with your partner’s username (the one who owns the repository).</p>
+<p>The other partner should <code>cd</code> to another directory (so <code>ls</code> doesn’t show a <code>software-carpentry-2016</code> folder), and then make a copy of this repository on your own computer:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> clone https://github.com/mqwilber/software-carpentry-2016.git</code></pre>
+<p>Replace ‘mqwilber’ with your partner’s username (the one who owns the repository).</p>
 <p><code>git clone</code> creates a fresh local copy of a remote repository.</p>
 <div class="figure">
 <img src="fig/github-collaboration.svg" alt="After Creating Clone of Repository" /><p class="caption">After Creating Clone of Repository</p>
 </div>
 <p>The new collaborator can now make a change in their copy of the repository:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> planets
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span> software-carpentry-2016
 $ <span class="kw">nano</span> pluto.txt
 $ <span class="kw">cat</span> pluto.txt</code></pre>
 <pre class="output"><code>It is so a planet!</code></pre>
@@ -74,7 +74,7 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (2/2), done.
 Writing objects: 100% (3/3), 306 bytes, done.
 Total 3 (delta 0), reused 0 (delta 0)
-To https://github.com/vlad/planets.git
+To https://github.com/mqwilber/software-carpentry-2016.git
    9272da5..29aba7c  master -&gt; master</code></pre>
 <p>Note that we didn’t have to create a remote called <code>origin</code>: Git does this automatically, using that name, when we clone a repository. (This is why <code>origin</code> was a sensible choice earlier when we were setting up remotes by hand.)</p>
 <p>We can now download changes into the original repository on our machine:</p>
@@ -83,7 +83,7 @@ To https://github.com/vlad/planets.git
 remote: Compressing objects: 100% (2/2), done.
 remote: Total 3 (delta 0), reused 3 (delta 0)
 Unpacking objects: 100% (3/3), done.
-From https://github.com/vlad/planets
+From https://github.com/mqwilber/software-carpentry-2016
  * branch            master     -&gt; FETCH_HEAD
 Updating 9272da5..29aba7c
 Fast-forward
@@ -95,7 +95,7 @@ Fast-forward
 <h2><span class="glyphicon glyphicon-pencil"></span>Raise an issue on Github and fix it</h2>
 </div>
 <div class="panel-body">
-<p>Have one member of your group raise an <strong>Issue</strong> (look at the issues tab) in the github <code>planet</code> repository on which you all are collaborating. It can be something like</p>
+<p>Have one member of your group raise an <strong>Issue</strong> (look at the issues tab) in the github <code>software-carpentry-2016</code> repository on which you all are collaborating. It can be something like</p>
 
 <p><em>@mqwilber needs to add a bibliography file</em></p>
 
