@@ -78,19 +78,19 @@ With these large datasets, `dplyr` also lets you quickly summarize the data. It 
 
 To we can add other functions here, such as `max()`, `min()`, and `sd()`. 
 
-    summarize(a, mean_mass <- mean(adult_body_mass_g, na.rm = TRUE), sd_mass <- sd(adult_body_mass_g, na.rm = TRUE))
+    summarize(a, mean_mass = mean(adult_body_mass_g, na.rm = TRUE), sd_mass = sd(adult_body_mass_g, na.rm = TRUE))
 
 `summarize` makes a new dataset, but `mutate` will add these columns instead to the original dataframe. 
 
     a <- group_by(mammals, order)
-    mutate(a, mean_mass <- mean(adult_body_mass_g, na.rm = TRUE))
+    mutate(a, mean_mass = mean(adult_body_mass_g, na.rm = TRUE))
 
 This outputs the same numbers as the equivalent `summarize` function, but puts them in a new column on the same dataset. 
 
 What if we want to figure out how the mass of each animal relates to other animals of its order? To do this, we will divide each species' body mass by its order's mean body mass. 
 
     a <- group_by(mammals, order)
-    mutate(a, mean_mass <- mean(adult_body_mass_g, na.rm = TRUE), normalized_mass <- adult_body_mass_g / mean_mass)
+    mutate(a, mean_mass = mean(adult_body_mass_g, na.rm = TRUE), normalized_mass= a dult_body_mass_g / mean_mass)
 
 Using Pipes for code streamlining
 ---------------------
@@ -103,7 +103,7 @@ we would write
     
     a = mammals %>%  #take the mammals data
         group_by(order) %>% #split it up by "order"
-        mutate(mean_mass <- mean(adult_body_mass_g, na.rm = TRUE))
+        mutate(mean_mass = mean(adult_body_mass_g, na.rm = TRUE))
 
 
 <img src="http://uploads7.wikiart.org/images/rene-magritte/the-treachery-of-images-this-is-not-a-pipe-1948(2).jpg" height="400px" align="middle"  />
