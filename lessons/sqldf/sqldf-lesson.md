@@ -30,15 +30,13 @@ It is a database manager. Every database manager — Oracle, IBM DB2, PostgreSQL
 
 # Benefits of relational databases
 
-Both SQL and spreadsheets are used to store and manipulate data.
+Both relational databases and spreadsheets are used to store and manipulate data.
 
-SQL | spreadsheets|
+relational DB | spreadsheets|
 ---------------|---------------|
-relational | not relational|
 handle more data | slow down quickly|
 develop open science practices | difficult to follow methods|
-easy to backup | easy to loose data|
-store in a db | store only in flat files
+easy to version | easy to loose data|
 
 ***
 
