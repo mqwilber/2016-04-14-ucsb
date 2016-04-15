@@ -1,7 +1,7 @@
 ---
 layout: lesson
 root: ../..
-title: SQL with dataframes
+title: SQLite with dataframes
 ---
 
 *by Katja Seltmann* with excerpts from Software Carpentry SQLite lesson.
@@ -175,7 +175,7 @@ Remove white space
     head(taxonString)
 
 ***
-Counting using SQL by Groups and then making quick and simple barplots
+Counting using SQLite by Groups and then making quick and simple barplots
 
     numberSpecies <- sqldf("select count(species) as cnt,taxonOrder from mammalsEdited group by taxonOrder order by cnt desc")
     
@@ -196,7 +196,7 @@ Finding maximum and minimum
     sqldf("select * from mammals where adult_body_mass_g = (select max(adult_body_mass_g) from mammals)")
  
 *** 
-SQL has a lot of built in [functions](https://www.sqlite.org/lang_corefunc.html) that can help with processing numbers or text. 
+SQLite has a lot of built in [functions](https://www.sqlite.org/lang_corefunc.html) that can help with processing numbers or text. 
 
 Some particularly helpful ones are: ***trim()***, ***upper()***, ***round()***, and ***random()***
 
