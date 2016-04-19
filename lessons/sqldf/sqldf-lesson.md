@@ -1,7 +1,8 @@
 ---
-layout: lesson
+title: "Learning SQLite syntax with dataframes"
+output: html_document
 root: ../..
-title: SQLite with dataframes
+layout: lesson
 ---
 
 *by Katja Seltmann* with excerpts from Software Carpentry SQLite lesson.
@@ -57,7 +58,9 @@ Here's how to install sqldf:
 ***
 
 ##`data`
-For this section, let's first start by:
+For this section, let's first start by dealing with our data and folders:
+
+- The data is found [here](http://mqwilber.github.io/2016-04-14-ucsb/data/data-files.zip) 
 
 - createing a new folder for our **sqldf** lesson
 
@@ -291,4 +294,4 @@ Delete values
 We covered basic syntax of sql using sqlLite syntax on data frames without actually creating a database. We did not cover creating a database or executing commands in conjunction with a database. There are a lot of good tutorials online to learn more:
 
 - [Sandy Muspratt's R Blog](http://sandymuspratt.blogspot.com/2012/11/r-and-sqlite-part-1.html)
-
+ 
