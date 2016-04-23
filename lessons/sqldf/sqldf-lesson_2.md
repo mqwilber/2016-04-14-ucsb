@@ -18,9 +18,6 @@ layout: lesson
 - Introduction to creating and storing data using SQLite
 
 ***
-
-# Advanced methods sqldf() 
-
 We have come far! Now, lets figure out how to do more complex actions in SQLite using sqldf.
 
 ***
@@ -28,33 +25,8 @@ We have come far! Now, lets figure out how to do more complex actions in SQLite 
 
 ***
 
-Merging or joining data frames
+#Joining data frames
 
-    A <- data.frame(a1 = c(1, 2, 1), a2 = c(2, 3, 3), a3 = c(3, 1, 2))
-    
-    B <- data.frame(b1 = 1:2, b2 = 2:1)
-    
-    sqlMerge <- sqldf("select * from A, B")
-
-    head(sqlMerge)
-    
-***
-    
-Let's do this with our concatinated string for the mammal names. Remember the taxonString data frame created from editing mammalsEdited?
-
-    head(taxonString)
-    
-    head(mammalsEdited)
-
-
-***
-we can merge in a simple way, but it just sticks the data frames together
-    
-    sqlMergeMammals <- sqldf("select * from taxonString,mammalsEdited")
-    
-    head(sqlMergeMammals)
-
-***
 Let's make the merge in a way we can select values from 2 different data frames and put them together in a new data frame
 
     sqlJoinMammals <- sqldf("select taxonOrder,mass,mammalsEdited.species,taxonString.name from mammalsEdited join taxonString on taxonString.species=mammalsEdited.species")

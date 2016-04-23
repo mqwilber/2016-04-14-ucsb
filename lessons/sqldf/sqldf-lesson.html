@@ -175,9 +175,11 @@ sqldf(&quot;select distinct `order`,species from mammals&quot;)</code></pre>
 
 sqldf(&quot;select `order`, species from mammals where `order`='Carnivora'&quot;)</code></pre>
 <p><strong>Select</strong> using limits and ordering</p>
-<pre><code>sqldf(&quot;select * from mammals where `order`='Carnivora' limit 3&quot;)
+<pre><code>sqldf(&quot;select * from mammals where `order`='Carnivora' limit 3&quot;)</code></pre>
+<hr />
+<pre><code>sqldf(&quot;select * from mammals where `order`='Carnivora' order by `adult_body_mass_g` desc limit 10&quot;)
 
-sqldf(&quot;select * from mammals where `order`='Carnivora' order by `adult_body_mass_g` limit 10&quot;)</code></pre>
+    sqldf(&quot;select * from mammals where `order`='Carnivora' order by `order` asc, litter_size desc limit 10&quot;)</code></pre>
 <p><strong>TIP</strong>: The opposite of desc is <strong>asc</strong></p>
 <hr />
 <p>Select based on wildcard searching.</p>
