@@ -138,7 +138,7 @@ SQLite gives you more ways with Select. Select statements using SQLite * indicat
 
 Select based on wildcard searching.
 
-    sqldf("select * from  mammals `order` where species like 'Canis%'")
+    sqldf("select * from  mammals where species like 'Canis%'")
 
 ***
     Select, change and create new data frames
