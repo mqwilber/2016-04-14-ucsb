@@ -89,7 +89,7 @@ Create a table manually
     range NUMERIC,
     litterSize NUMERIC)")
 
-***TIP***: SQLite supports TEXT, NUMERIC, INTEGER, REAL, BLOB (data types)[https://www.sqlite.org/datatype3.html]. 
+***TIP***: SQLite supports TEXT, NUMERIC, INTEGER, REAL, BLOB [data types](https://www.sqlite.org/datatype3.html). 
 
 ***
 Reading database tables
@@ -100,7 +100,9 @@ Reading database tables
 
 ***
 Drop database table
+
     dbRemoveTable(db, "Mammal")
+    
 ***
 
 ***remember***: we have a data frame called mammals.

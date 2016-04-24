@@ -134,13 +134,15 @@ mass NUMERIC,
 length NUMERIC,
 range NUMERIC,
 litterSize NUMERIC)&quot;)</code></pre>
-<p><strong><em>TIP</em></strong>: SQLite supports TEXT, NUMERIC, INTEGER, REAL, BLOB (data types)[<a href="https://www.sqlite.org/datatype3.html">https://www.sqlite.org/datatype3.html</a>].</p>
+<p><strong><em>TIP</em></strong>: SQLite supports TEXT, NUMERIC, INTEGER, REAL, BLOB <a href="https://www.sqlite.org/datatype3.html">data types</a>.</p>
 <hr />
 <p>Reading database tables</p>
 <pre><code>dbListTables(db)
 dbListFields(db, &quot;Mammal&quot;)</code></pre>
 <hr />
-<p>Drop database table dbRemoveTable(db, “Mammal”) ***</p>
+<p>Drop database table</p>
+<pre><code>dbRemoveTable(db, &quot;Mammal&quot;)</code></pre>
+<hr />
 <p><strong><em>remember</em></strong>: we have a data frame called mammals.</p>
 <pre><code>mammals &lt;- read.csv(&quot;mammal_stats.csv&quot;, header=TRUE)
 
