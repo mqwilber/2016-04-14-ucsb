@@ -167,9 +167,7 @@ View(mammals)</code></pre>
 <pre><code>sqldf(&quot;select distinct `order` from mammals&quot;)
 
 sqldf(&quot;select distinct `order`,species from mammals&quot;)</code></pre>
-<blockquote>
-<p><strong>TIP</strong>: The word <strong><em>order</em></strong> is a column name, but it is also a command reserved in SQL. Put column names in `` to avoid confusion.</p>
-</blockquote>
+<p><strong><em>TIP</em></strong>: The word <strong>order</strong> is a column name, but it is also a reserved word in SQL. Put column names in `` to avoid confusion.</p>
 <hr />
 <p><strong>Select</strong> using filters, limits and ordering</p>
 <pre><code>sqldf(&quot;select * from mammals where `order`='Carnivora'&quot;)
@@ -183,9 +181,7 @@ sqldf(&quot;select `order`, species from mammals where `order`='Carnivora'&quot;
 <pre><code>sqldf(&quot;select * from mammals where `order`='Carnivora' order by `adult_body_mass_g` desc limit 10&quot;)
 
     sqldf(&quot;select * from mammals where `order`='Carnivora' order by `order` asc, litter_size desc limit 10&quot;)</code></pre>
-<blockquote>
-<p><strong>TIP</strong>: The opposite of desc is <strong>asc</strong></p>
-</blockquote>
+<p><strong><em>TIP</em></strong>: The opposite of desc is <strong>asc</strong></p>
 <hr />
 <p>Select based on wildcard searching.</p>
 <pre><code>sqldf(&quot;select * from  mammals where species like 'Canis%'&quot;)</code></pre>

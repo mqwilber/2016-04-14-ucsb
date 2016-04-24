@@ -116,7 +116,7 @@ SQLite gives you more ways with Select. Select statements using SQLite * indicat
     sqldf("select distinct `order`,species from mammals")
 
 
-> **TIP**: The word ***order*** is a column name, but it is also a command reserved in SQL. Put column names in `` to avoid confusion.
+***TIP***: The word **order** is a column name, but it is also a reserved word in SQL. Put column names in `` to avoid confusion.
 
 ***
 
@@ -139,7 +139,7 @@ Order using acending or decending values
     
         sqldf("select * from mammals where `order`='Carnivora' order by `order` asc, litter_size desc limit 10")
 
-> **TIP**: The opposite of desc is **asc**
+***TIP***: The opposite of desc is **asc**
 
 ***
 
