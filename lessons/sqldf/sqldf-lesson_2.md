@@ -108,7 +108,6 @@ Drop database table
 ***remember***: we have a data frame called mammals.
 
     mammals <- read.csv("mammal_stats.csv", header=TRUE)
-
     head(mammals)
 
 ***
