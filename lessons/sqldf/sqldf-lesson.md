@@ -145,7 +145,9 @@ Select based on wildcard searching.
     sqldf("select * from  mammals where species like 'Canis%'")
 
 ***
-    Select, change and create new data frames
+#Select, change and create new data frames
+
+Select a distinct list of values from a column
 
     sqldf("select distinct `order` as taxonOrder from mammals")
     
@@ -153,6 +155,10 @@ Select based on wildcard searching.
 Select all where litter_size is not NA
 
     sqldf("select * from mammals where litter_size is not null limit 10")
+    
+or 
+
+    sqldf("select * from mammals where litter_size != 'N/A' limit 10")
     
 ***
 
