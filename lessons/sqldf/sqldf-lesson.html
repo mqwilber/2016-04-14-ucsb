@@ -191,9 +191,8 @@ sqldf(&quot;select `order`, species from mammals where `order`='Carnivora'&quot;
 <pre><code>sqldf(&quot;select * from  mammals where species like 'Canis%'&quot;)</code></pre>
 <hr />
 </div>
-</div>
-<div id="select-change-and-create-new-data-frames" class="section level1">
-<h1>Select, change and create new data frames</h1>
+<div id="select-change-and-create-new-data-frames" class="section level2">
+<h2>Select, change and create new data frames</h2>
 <p>Select a distinct list of values from a column</p>
 <pre><code>sqldf(&quot;select distinct `order` as taxonOrder from mammals&quot;)</code></pre>
 <hr />
@@ -243,6 +242,7 @@ sqldf(&quot;select * from mammals where adult_body_mass_g = (select max(adult_bo
 <p><strong>Exercise 2</strong>: Use the upper() function to output the taxonOrder names in mammalsEdited all in uppercase. Write the output to a new data frame.</p>
 </blockquote>
 <hr />
+</div>
 </div>
 
 
