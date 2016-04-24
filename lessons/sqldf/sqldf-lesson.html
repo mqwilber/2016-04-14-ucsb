@@ -153,8 +153,6 @@ getwd()</code></pre>
 head(mammals)</code></pre>
 <p><strong><em>TIP</em></strong>: header: logical: should the data frame use the first row as headers?</p>
 <hr />
-<div id="selecting-values" class="section level2">
-<h2>Selecting values</h2>
 <p>R gives you lots of ways to look at your data frame.</p>
 <pre><code>head(mammals)
 tail(mammals)
@@ -163,6 +161,8 @@ View(mammals)</code></pre>
 <p>SQLite gives you more ways with Select. Select statements using SQLite * indicates selecting all columns.</p>
 <pre><code>sqldf(&quot;select * from mammals limit 10&quot;)</code></pre>
 <hr />
+<div id="selecting-values" class="section level2">
+<h2>Selecting values</h2>
 <p><strong>Select</strong> distinct values in rows.</p>
 <pre><code>sqldf(&quot;select distinct `order` from mammals&quot;)
 
@@ -170,17 +170,22 @@ sqldf(&quot;select distinct `order`,species from mammals&quot;)</code></pre>
 <blockquote>
 <p><strong>TIP</strong>: The word <strong><em>order</em></strong> is a column name, but it is also a command reserved in SQL. Put column names in `` to avoid confusion.</p>
 </blockquote>
+<hr />
 <p><strong>Select</strong> using filters, limits and ordering</p>
 <pre><code>sqldf(&quot;select * from mammals where `order`='Carnivora'&quot;)
 
 sqldf(&quot;select `order`, species from mammals where `order`='Carnivora'&quot;)</code></pre>
-<p><strong>Select</strong> using limits and ordering</p>
+<hr />
+<p><strong>Select</strong> using limits</p>
 <pre><code>sqldf(&quot;select * from mammals where `order`='Carnivora' limit 3&quot;)</code></pre>
 <hr />
+<p>Order using acending or decending values</p>
 <pre><code>sqldf(&quot;select * from mammals where `order`='Carnivora' order by `adult_body_mass_g` desc limit 10&quot;)
 
     sqldf(&quot;select * from mammals where `order`='Carnivora' order by `order` asc, litter_size desc limit 10&quot;)</code></pre>
+<blockquote>
 <p><strong>TIP</strong>: The opposite of desc is <strong>asc</strong></p>
+</blockquote>
 <hr />
 <p>Select based on wildcard searching.</p>
 <pre><code>sqldf(&quot;select * from  mammals where species like 'Canis%'&quot;)</code></pre>

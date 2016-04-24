@@ -95,9 +95,6 @@ First, read in the data frame as we did before using **read.csv**
 ***TIP***: header: logical: should the data frame use the first row as headers?
 
 ***
-
-##Selecting values
-
 R gives you lots of ways to look at your data frame.
 
     head(mammals)
@@ -110,6 +107,8 @@ SQLite gives you more ways with Select. Select statements using SQLite * indicat
     sqldf("select * from mammals limit 10")
 
 ***
+##Selecting values
+
 **Select** distinct values in rows.
 
     sqldf("select distinct `order` from mammals")
@@ -119,24 +118,28 @@ SQLite gives you more ways with Select. Select statements using SQLite * indicat
 
 > **TIP**: The word ***order*** is a column name, but it is also a command reserved in SQL. Put column names in `` to avoid confusion.
 
+***
+
 **Select** using filters, limits and ordering
 
     sqldf("select * from mammals where `order`='Carnivora'")
     
     sqldf("select `order`, species from mammals where `order`='Carnivora'")
-    
 
-**Select** using limits and ordering
+***    
+
+**Select** using limits
 
     sqldf("select * from mammals where `order`='Carnivora' limit 3")
   
 ***  
-  
+Order using acending or decending values
+
     sqldf("select * from mammals where `order`='Carnivora' order by `adult_body_mass_g` desc limit 10")
     
         sqldf("select * from mammals where `order`='Carnivora' order by `order` asc, litter_size desc limit 10")
 
-**TIP**: The opposite of desc is **asc**
+> **TIP**: The opposite of desc is **asc**
 
 ***
 
@@ -145,7 +148,7 @@ Select based on wildcard searching.
     sqldf("select * from  mammals where species like 'Canis%'")
 
 ***
-#Select, change and create new data frames
+##Select, change and create new data frames
 
 Select a distinct list of values from a column
 
