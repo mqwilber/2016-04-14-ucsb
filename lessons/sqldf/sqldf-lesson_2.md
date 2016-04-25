@@ -149,3 +149,8 @@ Insert the data frame into the database
 Disconnect at the end. Important if you have mulitple transactions happening in an R script
 
     dbDisconnect(db)
+
+***
+> **Exercise 4**:
+> Update the Mammalcsv table to round the adult_body_mass_g
+    
