@@ -18,6 +18,17 @@ layout: lesson
 - Introduction to creating and storing data using SQLite, data Joins, Updates and Delete
 
 ***
+Getting started where we left off...
+    
+    mammals <- read.csv("mammal_stats.csv", header=TRUE)
+    library("sqldf")
+    
+    ??read.csv
+    
+
+***TIP***: When you load sqldf you also load the packages RSQLite and DBI by default. DBI allows us to work in R directly with a database manager software, and RSQLite package that lets us create SQLite databases.
+
+***
  <img src="https://s-media-cache-ak0.pinimg.com/736x/e3/e9/02/e3e90236dfce025c9f4ac9aec842f246.jpg" height="300px" align="middle"  />
 
 ***
@@ -26,48 +37,52 @@ layout: lesson
 
 Let's make the merge in a way we can select values from 2 different data frames and put them together in a new data frame
 
-    sqlJoinMammals <- sqldf("select taxonOrder,mass,mammalsEdited.species,taxonString.name from mammalsEdited join taxonString on taxonString.species=mammalsEdited.species")
-
-    head(sqlJoinMammals)
+    mammalCounts <- sqldf("select count(*) as orderTotal, species from mammals group by `order`")
+    sqldf("select count(*) from mammals where `order` = 'Afrosoricida'")
+    head(mammalCounts)
     
- 
+    sqlJoinMammalsCount <- sqldf("select * from mammals join mammalCounts on mammals.species = mammalCounts.species")
+    head(sqlJoinMammalsCount)
+    
+    sqlJoinMammalsCount <- sqldf("select mammals.*,mammalCounts.orderTotal from mammals join mammalCounts on mammals.species=mammalCounts.species")
+    head(sqlJoinMammalsCount)
+    
 ***
-> **Exercise 3**:
-> Create a new dataframe that counts the number of species for every order. Then join that data frame as a new column in the sqlJoinMammals data frame.
-
-***TIP***: We already did the counts in the data frame **numberSpecies**.
 
 # Update and Delete values from a data frame
 
 ***
-Update a data frame
+Update a data frame by merging and overwriting the first dataframe
 
-    sql1 <- "update sqlJoinMammals set taxonOrder='Primates' where name='Artiodactyla-Camelus-dromedarius'"
+    sql1 <- "update sqlJoinMammalsCount set `order`='Primates' where species='Dromiciops gliroides'"
     
-    sql2 <- "select * from sqlJoinMammals"
+    sql2 <- "select * from sqlJoinMammalsCount"
     
-    sqldf(c(sql1, sql2))
-    
+   sqlJoinMammalsCount <- sqldf(c(sql1, sql2))
     
 ***
 Delete values
 
-    noCarnivora <- sqldf(c("delete from sqlJoinMammals where taxonOrder='Carnivora'", "select * from sqlJoinMammals"))
+    sqlJoinMammalsCount <- sqldf(c("delete from sqlJoinMammalsCount where `order`='Dermoptera'", "select * from sqlJoinMammalsCount"))
 
-    head(noCarnivora)
+    head(sqlJoinMammalsCount)
     
 ***
-Update values
+Insert a value
+    sqlJoinMammalsCount <- sqldf(c("insert into sqlJoinMammalsCount values (1,'Primates','New primate', 55.00,'',134,2,4)","select * from sqlJoinMammalsCount"))
 
-    updateValues <- sqldf(c("update sqlJoinMammals set mass = '28' where name='Artiodactyla-Camelus-dromedarius'", "select * from sqlJoinMammals"))
+    head(sqlJoinMammalsCount)
+    
+    sqldf("select * from sqlJoinMammalsCount where species='New Primate'")
+    
+    *** 
+> **Exercise 3**:
+> Insert a new record where litter size is NA
 
-    head(updateValues)
+***TIP***: NA is NULL in SQL
 
 ***
-> **Exercise 4**:  
- > Round the mass of all values in updateValues.
 
-***
 #Create a SQLite database
 
     db <- dbConnect(SQLite(), dbname="Mammaldb.sqlite")
@@ -99,6 +114,21 @@ Reading database tables
 
 
 ***
+Insert a single record
+
+ db <- dbConnect(SQLite(), dbname="Mammaldb.sqlite")
+ 
+    dbSendQuery(conn = db,"insert into Mammal values ('Primates','New primate-2', 55.00,'',134,2)")
+         
+    sqldf(c("insert into Mammal values ('Primates','New primate', 55.00,'',134,2)","select * from Mammal"), dbname = "Mammaldb.sqlite")
+    
+***
+Select from database using sqldf and SQLite syntax
+
+    sqldf("SELECT * FROM Mammal limit 10", dbname = "Mammaldb.sqlite") 
+    dbReadTable(db, "Mammal")
+
+***
 Drop database table
 
     dbRemoveTable(db, "Mammal")
@@ -113,13 +143,9 @@ Drop database table
 ***
 Insert the data frame into the database
 
-    dbWriteTable(conn = db, name = "Mammal", value = mammals, row.names = TRUE)
-
-***
-Select from database using sqldf
-
-    sqldf("SELECT * FROM Mammal limit 10", dbname = "Mammaldb.sqlite") 
-    
+    dbWriteTable(conn = db, name = "Mammalcsv", value = mammals, row.names = TRUE)
     
 ***
-Insert a single record
+Disconnect at the end. Important if you have mulitple transactions happening in an R script
+
+    dbDisconnect(db)
