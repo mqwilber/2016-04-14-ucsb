@@ -133,7 +133,7 @@ SQLite gives you more ways with Select. Select statements using SQLite * indicat
     sqldf("select * from mammals where `order`='Carnivora' limit 3")
   
 ***  
-Order using acending or decending values
+Order using ascending or descending values
 
     sqldf("select * from mammals where `order`='Carnivora' order by `adult_body_mass_g` desc limit 10")
     
@@ -177,7 +177,7 @@ Save your output to a new data frame
     head(mammalsEdited)
 
 ***
-Concatination
+Concatenation
 
     sqldf("select taxonOrder || '-' || species as name from mammalsEdited limit 10")
 
